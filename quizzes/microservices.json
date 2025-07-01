@@ -1,0 +1,238 @@
+{
+    "quizId": "004",
+    "quizName": "microservice: Glitches, Gags & Gigabytes",
+    "questions": [
+      {
+        "questionId": "001",
+        "questionText": "Du wachst auf in einem Raum voller winziger, streitender Mikroservices, die um die Vorherrschaft im Netzwerk ringen. Ein Mikroservice hat sich in einen Server verwandelt und verlangt plötzlich ein Opfer in Form von REST-Calls. Inmitten dieses Chaos fragt dich der Hauptservice mit ernster Stimme: Was beschreibt am besten das Prinzip eines Microservices?",
+        "correctAnswerId": "001001",
+        "answers": [
+          { "answerId": "001001", "answerText": "Eine kleine, unabhängige Anwendung, die eine einzelne Geschäftsdomäne bedient" },
+          { "answerId": "001002", "answerText": "Ein Roboter, der deinen Kaffee macht, während du programmierst" },
+          { "answerId": "001003", "answerText": "Ein Monster, das Datenbanken frisst und Logs kotzt" },
+          { "answerId": "001004", "answerText": "Eine magische Wolke, die Code in Regenbögen verwandelt" }
+        ]
+      },
+      {
+        "questionId": "002",
+        "questionText": "Während du durch ein Labyrinth aus Docker-Containern irrst, taucht eine lebendige API auf und verlangt, dass du ihr die ultimative Kommunikationsmethode verrätst. Sie flüstert: „Ich will nicht einfach nur Daten, ich will einen Dialog!“ Welches Protokoll ist typisch für die Kommunikation zwischen Microservices?",
+        "correctAnswerId": "002002",
+        "answers": [
+          { "answerId": "002001", "answerText": "Morsecode via Rauchzeichen" },
+          { "answerId": "002002", "answerText": "HTTP/REST oder gRPC" },
+          { "answerId": "002003", "answerText": "Telepathie mit eingebautem Debugger" },
+          { "answerId": "002004", "answerText": "Carrier-Pigeon Messaging System" }
+        ]
+      },
+      {
+        "questionId": "003",
+        "questionText": "Ein bösartiger Load Balancer verkleidet sich als netter Dienst und beginnt, deine Microservices wild durcheinander zu wirbeln wie eine Waschmaschine auf Speed. Die Services schreien um Hilfe und du musst entscheiden: Was ist die Hauptaufgabe eines Load Balancers in einer Microservice-Architektur?",
+        "correctAnswerId": "003004",
+        "answers": [
+          { "answerId": "003001", "answerText": "Mikroservices in der Luft jonglieren" },
+          { "answerId": "003002", "answerText": "Datenpakete mit Pizza beliefern" },
+          { "answerId": "003003", "answerText": "Alle Fehler automatisch in Katzenvideos verwandeln" },
+          { "answerId": "003004", "answerText": "Anfragen effizient auf mehrere Service-Instanzen verteilen" }
+        ]
+      },
+      {
+        "questionId": "004",
+        "questionText": "In einem digitalen Dschungel hast du eine Horde von Microservices, die alle unabhängig von unterschiedlichen Teams entwickelt wurden. Plötzlich meldet sich der Chaos-Monster-Monitor mit einem Alarm: \"Welche Strategie hilft, um diese wilden Microservices unter Kontrolle zu bringen?\"",
+        "correctAnswerId": "004003",
+        "answers": [
+          { "answerId": "004001", "answerText": "Alle Services in einen Topf werfen und kräftig umrühren" },
+          { "answerId": "004002", "answerText": "Mit einem Mikrofon jeden Service zu einem Karaoke-Wettbewerb einladen" },
+          { "answerId": "004003", "answerText": "Service Discovery und zentrale Konfigurationsverwaltung einsetzen" },
+          { "answerId": "004004", "answerText": "Jeden Service einzeln mit Kettensägen bewaffnen" }
+        ]
+      },
+      {
+        "questionId": "005",
+        "questionText": "Ein Microservice-Drama entfaltet sich: Ein Service weigert sich, mit anderen zu sprechen und startet einen monolithischen Solo-Akt. Deine Aufgabe als IT-Regisseur: Wie nennst du diese widerspenstige Architektur, die Microservices vermeiden?",
+        "correctAnswerId": "005001",
+        "answers": [
+          { "answerId": "005001", "answerText": "Monolithische Architektur" },
+          { "answerId": "005002", "answerText": "Das Orchester ohne Dirigent" },
+          { "answerId": "005003", "answerText": "Die singende Datenbank" },
+          { "answerId": "005004", "answerText": "Chaos-Theater Deluxe" }
+        ]
+      },
+      {
+        "questionId": "006",
+        "questionText": "Mitten in einer nächtlichen Code-Session verwandelt sich dein Microservice in eine wandelnde Firewall und stellt die Frage: Was ist eine gängige Methode, um Microservices sicher gegeneinander zu isolieren?",
+        "correctAnswerId": "006002",
+        "answers": [
+          { "answerId": "006001", "answerText": "Mit unsichtbaren Schutzzaubern aus Harry-Potter-Filmen" },
+          { "answerId": "006002", "answerText": "Netzwerksegmentierung und API-Gateways" },
+          { "answerId": "006003", "answerText": "Sie in transparente Kugeln sperren" },
+          { "answerId": "006004", "answerText": "Jeden Service mit einem Zauberhut aus Aluminiumfolie ausstatten" }
+        ]
+      },
+      {
+        "questionId": "007",
+        "questionText": "In einem epischen Showdown kämpfen zwei Microservices um die Kontrolle der Daten. Einer wirft JSON-Bomben, der andere sendet XML-Pfeile. Du wirst gefragt: Welches Datenformat ist heute bei Microservices am beliebtesten für die Kommunikation?",
+        "correctAnswerId": "007003",
+        "answers": [
+          { "answerId": "007001", "answerText": "Morsecode mit Lichtsignalen" },
+          { "answerId": "007002", "answerText": "Krähen-Tanz in binären Mustern" },
+          { "answerId": "007003", "answerText": "JSON" },
+          { "answerId": "007004", "answerText": "Handgeschriebene Briefe mit Siegel" }
+        ]
+      },
+      {
+        "questionId": "008",
+        "questionText": "Ein panischer Microservice ruft dich an, weil er nicht weiß, wie er seinen Zustand speichern soll. Er jammert von vergessenen Sitzungen und verlorenen Daten. Welche Technik hilft einem Microservice, zustandslos zu bleiben?",
+        "correctAnswerId": "008001",
+        "answers": [
+          { "answerId": "008001", "answerText": "Externes Speichern von Zustand in Datenbanken oder Caches" },
+          { "answerId": "008002", "answerText": "Den Zustand in einem magischen Traum bewahren" },
+          { "answerId": "008003", "answerText": "Sich einfach nicht erinnern und hoffen" },
+          { "answerId": "008004", "answerText": "Eine innere Reise zur Selbstfindung starten" }
+        ]
+      },
+      {
+        "questionId": "009",
+        "questionText": "In der Welt der Microservices tanzen Container wild durcheinander, als plötzlich ein DevOps-Zauberer erscheint. Er verkündet: „Continuous Deployment ist das Gebot!“. Was bedeutet Continuous Deployment in diesem Kontext?",
+        "correctAnswerId": "009004",
+        "answers": [
+          { "answerId": "009001", "answerText": "Tägliches manuelles Hochladen von Microservices per Brieftaube" },
+          { "answerId": "009002", "answerText": "Den Code auf einem heiligen Berg meditativ bewachen" },
+          { "answerId": "009003", "answerText": "Deployen nur bei Vollmond und Sonnenfinsternis" },
+          { "answerId": "009004", "answerText": "Automatisches und kontinuierliches Ausrollen von Updates in Produktion" }
+        ]
+      },
+      {
+        "questionId": "010",
+        "questionText": "Ein Mikroservice klaut plötzlich alle Cookies, aber nicht die leckeren, sondern die HTTP-Cookies! In Panik fragst du dich: Wie können Microservices Sessions über mehrere Instanzen hinweg verwalten?",
+        "correctAnswerId": "010002",
+        "answers": [
+          { "answerId": "010001", "answerText": "Indem sie Telepathie zwischen Instanzen nutzen" },
+          { "answerId": "010002", "answerText": "Über zentrale Session Stores wie Redis" },
+          { "answerId": "010003", "answerText": "Cookies mit unsichtbarer Tinte beschreiben" },
+          { "answerId": "010004", "answerText": "Sessions einfach ignorieren und hoffen, dass niemand es merkt" }
+        ]
+      },
+      {
+        "questionId": "011",
+        "questionText": "Du beobachtest, wie Microservices in einem Orchester von Docker-Containern eine Sinfonie spielen. Doch plötzlich fällt der Vorhang: Was ist der Hauptvorteil der Containerisierung für Microservices?",
+        "correctAnswerId": "011001",
+        "answers": [
+          { "answerId": "011001", "answerText": "Isolation und Portabilität über verschiedene Umgebungen hinweg" },
+          { "answerId": "011002", "answerText": "Container verwandeln sich in wandelnde Roboter" },
+          { "answerId": "011003", "answerText": "Alle Microservices bekommen Superkräfte" },
+          { "answerId": "011004", "answerText": "Das Orchester macht plötzlich Paella" }
+        ]
+      },
+      {
+        "questionId": "012",
+        "questionText": "Eine geheimnisvolle Nachricht erscheint: „Circuit Breaker aktiviert!“. Deine Microservices zittern, doch was steckt hinter diesem Begriff?",
+        "correctAnswerId": "012003",
+        "answers": [
+          { "answerId": "012001", "answerText": "Ein Superhelden-Kostüm für Microservices" },
+          { "answerId": "012002", "answerText": "Ein Code, um Services in den Ruhezustand zu versetzen" },
+          { "answerId": "012003", "answerText": "Ein Muster, das Fehler in der Kommunikation verhindert, indem es bei Problemen Verbindungen trennt" },
+          { "answerId": "012004", "answerText": "Ein Breakdance-Move für Serverräume" }
+        ]
+      },
+      {
+        "questionId": "013",
+        "questionText": "In der Mikroservice-Galaxie kämpft ein Service ums Überleben gegen latente Sternenstaub-Fehler. Welche Metrik misst die Zeit, die ein Service braucht, um auf eine Anfrage zu reagieren?",
+        "correctAnswerId": "013001",
+        "answers": [
+          { "answerId": "013001", "answerText": "Latenz" },
+          { "answerId": "013002", "answerText": "Warpgeschwindigkeit" },
+          { "answerId": "013003", "answerText": "Kaffeekonsum pro Entwickler" },
+          { "answerId": "013004", "answerText": "Wurmloch-Distanz" }
+        ]
+      },
+      {
+        "questionId": "014",
+        "questionText": "Ein Microservice schreibt dir eine Liebeserklärung in YAML, aber du bist dir unsicher, was dieser Dienst genau macht. Wie nennt man die Beschreibung eines Microservices, die auch seine Schnittstellen definiert?",
+        "correctAnswerId": "014004",
+        "answers": [
+          { "answerId": "014001", "answerText": "Das Geheimnis der verlorenen API" },
+          { "answerId": "014002", "answerText": "Der Code des Orakels" },
+          { "answerId": "014003", "answerText": "Eine kryptische Schatzkarte" },
+          { "answerId": "014004", "answerText": "API-Spezifikation (z. B. OpenAPI/Swagger)" }
+        ]
+      },
+      {
+        "questionId": "015",
+        "questionText": "Ein Microservice weigert sich, mit dem Monitoring zu sprechen, weil er denkt, es sei ein Spion. Wie nennt man die Werkzeuge, die dafür sorgen, dass du im Microservice-Dschungel den Überblick behältst?",
+        "correctAnswerId": "015002",
+        "answers": [
+          { "answerId": "015001", "answerText": "Datenzauberstäbe" },
+          { "answerId": "015002", "answerText": "Monitoring- und Logging-Tools" },
+          { "answerId": "015003", "answerText": "Gedankenleser" },
+          { "answerId": "015004", "answerText": "Unsichtbare Helfer-Elfen" }
+        ]
+      },
+      {
+        "questionId": "016",
+        "questionText": "Ein Microservice hat einen Identitätskrise und will wissen, wie er sich eindeutig in einem Cluster identifiziert. Was ist eine gängige Methode zur eindeutigen Identifikation von Service-Instanzen?",
+        "correctAnswerId": "016003",
+        "answers": [
+          { "answerId": "016001", "answerText": "Namens-Tattoos mit fluoreszierender Tinte" },
+          { "answerId": "016002", "answerText": "Sternzeichen und Horoskop" },
+          { "answerId": "016003", "answerText": "UUIDs oder andere eindeutige IDs" },
+          { "answerId": "016004", "answerText": "Geheime Handschläge im Netzwerk" }
+        ]
+      },
+      {
+        "questionId": "017",
+        "questionText": "Ein verschrobener Microservice will wissen, wie er am besten skaliert, wenn plötzlich Millionen von Anfragen über ihn hereinbrechen wie ein wütender Orkan. Welche Technik hilft Microservices bei der Skalierung?",
+        "correctAnswerId": "017004",
+        "answers": [
+          { "answerId": "017001", "answerText": "Mikroservice-Voodoo" },
+          { "answerId": "017002", "answerText": "Kaffee für alle Services" },
+          { "answerId": "017003", "answerText": "Mikroservices in den Weltraum schicken" },
+          { "answerId": "017004", "answerText": "Horizontales Skalieren durch Hinzufügen weiterer Instanzen" }
+        ]
+      },
+      {
+        "questionId": "018",
+        "questionText": "Ein verirrter Microservice fragt dich: „Wie verhindere ich, dass ich mich in endlosen Schleifen von Anfragen mit anderen Services verliere?“ Welche Muster helfen, solche Probleme zu vermeiden?",
+        "correctAnswerId": "018001",
+        "answers": [
+          { "answerId": "018001", "answerText": "Timeouts, Circuit Breaker und Retry-Mechanismen" },
+          { "answerId": "018002", "answerText": "Service-Hypnose" },
+          { "answerId": "018003", "answerText": "Einander zum Mittagessen einladen" },
+          { "answerId": "018004", "answerText": "Den Dienst mit einem Glücksbringer ausstatten" }
+        ]
+      },
+      {
+        "questionId": "019",
+        "questionText": "Ein Microservice-Dämon taucht auf und will wissen, wie man verhindern kann, dass einzelne Services das gesamte System zum Absturz bringen. Welches Prinzip schützt vor solch apokalyptischen Ausfällen?",
+        "correctAnswerId": "019002",
+        "answers": [
+          { "answerId": "019001", "answerText": "Das Ritual der heiligen Debugging-Zauber" },
+          { "answerId": "019002", "answerText": "Fehlertoleranz und Isolation von Services" },
+          { "answerId": "019003", "answerText": "Alle Services in eine große Festung sperren" },
+          { "answerId": "019004", "answerText": "Den Systemadministrator opfern" }
+        ]
+      },
+      {
+        "questionId": "020",
+        "questionText": "Du stehst vor dem Tor der Microservice-API und brauchst eine Eintrittskarte. Welcher Begriff beschreibt die Schnittstelle, die es Microservices erlaubt, miteinander zu sprechen?",
+        "correctAnswerId": "020003",
+        "answers": [
+          { "answerId": "020001", "answerText": "Geheimgang der Datenpiraten" },
+          { "answerId": "020002", "answerText": "Magische Portale" },
+          { "answerId": "020003", "answerText": "API (Application Programming Interface)" },
+          { "answerId": "020004", "answerText": "Flüsterpost" }
+        ]
+      },
+      {
+        "questionId": "021",
+        "questionText": "In einem bizarren Alptraum sprechen deine Microservices plötzlich alle nur noch in verschiedenen Programmiersprachen und verstehen sich nicht mehr. Was ist eine häufige Herausforderung bei der Microservice-Architektur, die genau dieses Problem beschreibt?",
+        "correctAnswerId": "021002",
+        "answers": [
+          { "answerId": "021001", "answerText": "Der polyglotte Tanz der Bits" },
+          { "answerId": "021002", "answerText": "Technische Heterogenität und Integrationskomplexität" },
+          { "answerId": "021003", "answerText": "Der Zauber der Code-Verschmelzung" },
+          { "answerId": "021004", "answerText": "Der Fluch der verlorenen Semikolons" }
+        ]
+      }
+    ]
+  }
+  

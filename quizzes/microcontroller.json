@@ -1,0 +1,238 @@
+{
+    "quizId": "003",
+    "quizName": "Microcontroller Basics",
+    "questions": [
+      {
+        "questionId": "001",
+        "questionText": "What is a microcontroller?",
+        "correctAnswerId": "001001",
+        "answers": [
+          { "answerId": "001001", "answerText": "A small computer on a single integrated circuit" },
+          { "answerId": "001002", "answerText": "A type of printer" },
+          { "answerId": "001003", "answerText": "A desktop PC" },
+          { "answerId": "001004", "answerText": "A network router" }
+        ]
+      },
+      {
+        "questionId": "002",
+        "questionText": "Which component is usually integrated into a microcontroller?",
+        "correctAnswerId": "002001",
+        "answers": [
+          { "answerId": "002001", "answerText": "CPU, memory, and input/output peripherals" },
+          { "answerId": "002002", "answerText": "Mechanical parts" },
+          { "answerId": "002003", "answerText": "Optical lenses" },
+          { "answerId": "002004", "answerText": "Speakers" }
+        ]
+      },
+      {
+        "questionId": "003",
+        "questionText": "Which microcontroller family is developed by Atmel?",
+        "correctAnswerId": "003001",
+        "answers": [
+          { "answerId": "003001", "answerText": "AVR" },
+          { "answerId": "003002", "answerText": "Picasso" },
+          { "answerId": "003003", "answerText": "Z80" },
+          { "answerId": "003004", "answerText": "Pentium" }
+        ]
+      },
+      {
+        "questionId": "004",
+        "questionText": "What does GPIO stand for?",
+        "correctAnswerId": "004001",
+        "answers": [
+          { "answerId": "004001", "answerText": "General Purpose Input/Output" },
+          { "answerId": "004002", "answerText": "Graphic Processing Input/Output" },
+          { "answerId": "004003", "answerText": "Global Peripheral Interface Output" },
+          { "answerId": "004004", "answerText": "Ground Pin Input/Output" }
+        ]
+      },
+      {
+        "questionId": "005",
+        "questionText": "What is the function of an ADC in a microcontroller?",
+        "correctAnswerId": "005001",
+        "answers": [
+          { "answerId": "005001", "answerText": "Converts analog signals to digital" },
+          { "answerId": "005002", "answerText": "Generates PWM signals" },
+          { "answerId": "005003", "answerText": "Stores program code" },
+          { "answerId": "005004", "answerText": "Controls power supply" }
+        ]
+      },
+      {
+        "questionId": "006",
+        "questionText": "Which communication protocol is commonly used by microcontrollers?",
+        "correctAnswerId": "006001",
+        "answers": [
+          { "answerId": "006001", "answerText": "I2C" },
+          { "answerId": "006002", "answerText": "HDMI" },
+          { "answerId": "006003", "answerText": "VGA" },
+          { "answerId": "006004", "answerText": "DVI" }
+        ]
+      },
+      {
+        "questionId": "007",
+        "questionText": "Which language is most commonly used for microcontroller programming?",
+        "correctAnswerId": "007001",
+        "answers": [
+          { "answerId": "007001", "answerText": "C" },
+          { "answerId": "007002", "answerText": "HTML" },
+          { "answerId": "007003", "answerText": "CSS" },
+          { "answerId": "007004", "answerText": "Photoshop" }
+        ]
+      },
+      {
+        "questionId": "008",
+        "questionText": "Which company produces the popular PIC microcontrollers?",
+        "correctAnswerId": "008001",
+        "answers": [
+          { "answerId": "008001", "answerText": "Microchip" },
+          { "answerId": "008002", "answerText": "Intel" },
+          { "answerId": "008003", "answerText": "Microsoft" },
+          { "answerId": "008004", "answerText": "IBM" }
+        ]
+      },
+      {
+        "questionId": "009",
+        "questionText": "What does PWM stand for?",
+        "correctAnswerId": "009001",
+        "answers": [
+          { "answerId": "009001", "answerText": "Pulse Width Modulation" },
+          { "answerId": "009002", "answerText": "Processor With Memory" },
+          { "answerId": "009003", "answerText": "Parallel Waveform Measurement" },
+          { "answerId": "009004", "answerText": "Printed Wire Module" }
+        ]
+      },
+      {
+        "questionId": "010",
+        "questionText": "What is the purpose of a watchdog timer?",
+        "correctAnswerId": "010001",
+        "answers": [
+          { "answerId": "010001", "answerText": "To reset the microcontroller if the program hangs" },
+          { "answerId": "010002", "answerText": "To keep track of time for users" },
+          { "answerId": "010003", "answerText": "To boost power supply" },
+          { "answerId": "010004", "answerText": "To display graphics" }
+        ]
+      },
+      {
+        "questionId": "011",
+        "questionText": "What is an interrupt in microcontroller systems?",
+        "correctAnswerId": "011001",
+        "answers": [
+          { "answerId": "011001", "answerText": "A signal that pauses current tasks to handle an event" },
+          { "answerId": "011002", "answerText": "A hardware reset" },
+          { "answerId": "011003", "answerText": "A power-off command" },
+          { "answerId": "011004", "answerText": "A continuous loop" }
+        ]
+      },
+      {
+        "questionId": "012",
+        "questionText": "What does UART stand for?",
+        "correctAnswerId": "012001",
+        "answers": [
+          { "answerId": "012001", "answerText": "Universal Asynchronous Receiver/Transmitter" },
+          { "answerId": "012002", "answerText": "Unified Automated Response Technology" },
+          { "answerId": "012003", "answerText": "Ultra Accurate Real-time Timer" },
+          { "answerId": "012004", "answerText": "Universal Access Resource Tool" }
+        ]
+      },
+      {
+        "questionId": "013",
+        "questionText": "Which tool is used to upload code to a microcontroller?",
+        "correctAnswerId": "013001",
+        "answers": [
+          { "answerId": "013001", "answerText": "Programmer" },
+          { "answerId": "013002", "answerText": "Oscilloscope" },
+          { "answerId": "013003", "answerText": "Soldering iron" },
+          { "answerId": "013004", "answerText": "Multimeter" }
+        ]
+      },
+      {
+        "questionId": "014",
+        "questionText": "What is a common power voltage for microcontrollers?",
+        "correctAnswerId": "014001",
+        "answers": [
+          { "answerId": "014001", "answerText": "3.3V or 5V" },
+          { "answerId": "014002", "answerText": "12V" },
+          { "answerId": "014003", "answerText": "230V" },
+          { "answerId": "014004", "answerText": "110V" }
+        ]
+      },
+      {
+        "questionId": "015",
+        "questionText": "Which Arduino board uses the ATmega328 microcontroller?",
+        "correctAnswerId": "015001",
+        "answers": [
+          { "answerId": "015001", "answerText": "Arduino Uno" },
+          { "answerId": "015002", "answerText": "Arduino Mega" },
+          { "answerId": "015003", "answerText": "Arduino Due" },
+          { "answerId": "015004", "answerText": "Arduino Nano 33 BLE" }
+        ]
+      },
+      {
+        "questionId": "016",
+        "questionText": "What is Flash memory used for in a microcontroller?",
+        "correctAnswerId": "016001",
+        "answers": [
+          { "answerId": "016001", "answerText": "Storing the program code" },
+          { "answerId": "016002", "answerText": "Providing network access" },
+          { "answerId": "016003", "answerText": "Measuring temperature" },
+          { "answerId": "016004", "answerText": "Generating sound" }
+        ]
+      },
+      {
+        "questionId": "017",
+        "questionText": "Which pin type is used to reset a microcontroller?",
+        "correctAnswerId": "017001",
+        "answers": [
+          { "answerId": "017001", "answerText": "RESET pin" },
+          { "answerId": "017002", "answerText": "VCC pin" },
+          { "answerId": "017003", "answerText": "GND pin" },
+          { "answerId": "017004", "answerText": "RX pin" }
+        ]
+      },
+      {
+        "questionId": "018",
+        "questionText": "Which sensor type might connect directly to a microcontroller?",
+        "correctAnswerId": "018001",
+        "answers": [
+          { "answerId": "018001", "answerText": "Temperature sensor" },
+          { "answerId": "018002", "answerText": "CRT monitor" },
+          { "answerId": "018003", "answerText": "Laser printer" },
+          { "answerId": "018004", "answerText": "Power transformer" }
+        ]
+      },
+      {
+        "questionId": "019",
+        "questionText": "What is a bootloader in a microcontroller?",
+        "correctAnswerId": "019001",
+        "answers": [
+          { "answerId": "019001", "answerText": "Software that helps upload programs to the chip" },
+          { "answerId": "019002", "answerText": "A physical storage device" },
+          { "answerId": "019003", "answerText": "A type of battery" },
+          { "answerId": "019004", "answerText": "A communication cable" }
+        ]
+      },
+      {
+        "questionId": "020",
+        "questionText": "Which microcontroller architecture is used in ARM Cortex-M series?",
+        "correctAnswerId": "020001",
+        "answers": [
+          { "answerId": "020001", "answerText": "ARM" },
+          { "answerId": "020002", "answerText": "x86" },
+          { "answerId": "020003", "answerText": "PowerPC" },
+          { "answerId": "020004", "answerText": "MIPS" }
+        ]
+      },
+      {
+        "questionId": "021",
+        "questionText": "Which IDE is commonly used to program Arduino microcontrollers?",
+        "correctAnswerId": "021001",
+        "answers": [
+          { "answerId": "021001", "answerText": "Arduino IDE" },
+          { "answerId": "021002", "answerText": "Eclipse for Java" },
+          { "answerId": "021003", "answerText": "Unity" },
+          { "answerId": "021004", "answerText": "Android Studio" }
+        ]
+      }
+    ]
+  }
+  
