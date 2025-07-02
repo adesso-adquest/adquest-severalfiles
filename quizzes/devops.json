@@ -1,0 +1,138 @@
+{
+    "quizId": "002",
+    "quizName": "DevOps Grundlagen",
+    "questions": [
+      {
+        "questionId": "001",
+        "questionText": "Wofür steht DevOps?",
+        "correctAnswerId": "001001",
+        "answers": [
+          { "answerId": "001001", "answerText": "Development und Operations" },
+          { "answerId": "001002", "answerText": "Design und Optimization" },
+          { "answerId": "001003", "answerText": "Deployment und Oversight" },
+          { "answerId": "001004", "answerText": "Device und Output" }
+        ]
+      },
+      {
+        "questionId": "002",
+        "questionText": "Was ist ein Ziel von DevOps?",
+        "correctAnswerId": "002001",
+        "answers": [
+          { "answerId": "002001", "answerText": "Schnellere und zuverlässigere Softwarebereitstellung" },
+          { "answerId": "002002", "answerText": "Manuelle Bereitstellungsprozesse" },
+          { "answerId": "002003", "answerText": "Langsame Release-Zyklen" },
+          { "answerId": "002004", "answerText": "Trennung von Teams" }
+        ]
+      },
+      {
+        "questionId": "003",
+        "questionText": "Welches Tool wird häufig für Continuous Integration (CI) verwendet?",
+        "correctAnswerId": "003001",
+        "answers": [
+          { "answerId": "003001", "answerText": "Jenkins" },
+          { "answerId": "003002", "answerText": "Photoshop" },
+          { "answerId": "003003", "answerText": "Excel" },
+          { "answerId": "003004", "answerText": "Notepad" }
+        ]
+      },
+      {
+        "questionId": "004",
+        "questionText": "Was beschreibt 'Continuous Delivery'?",
+        "correctAnswerId": "004001",
+        "answers": [
+          { "answerId": "004001", "answerText": "Automatisierte Bereitstellung von Änderungen in produktionsähnliche Umgebungen" },
+          { "answerId": "004002", "answerText": "Manuelle Konfiguration von Servern" },
+          { "answerId": "004003", "answerText": "Wöchentliche Systemwartung" },
+          { "answerId": "004004", "answerText": "Monatliche Backups" }
+        ]
+      },
+      {
+        "questionId": "005",
+        "questionText": "Welches Prinzip gehört zu DevOps?",
+        "correctAnswerId": "005001",
+        "answers": [
+          { "answerId": "005001", "answerText": "Automatisierung" },
+          { "answerId": "005002", "answerText": "Manuelle Tests" },
+          { "answerId": "005003", "answerText": "Silos zwischen Teams" },
+          { "answerId": "005004", "answerText": "Lange Feedbackzyklen" }
+        ]
+      },
+      {
+        "questionId": "006",
+        "questionText": "Welches Tool wird oft für Infrastruktur als Code (IaC) genutzt?",
+        "correctAnswerId": "006001",
+        "answers": [
+          { "answerId": "006001", "answerText": "Terraform" },
+          { "answerId": "006002", "answerText": "Word" },
+          { "answerId": "006003", "answerText": "Excel" },
+          { "answerId": "006004", "answerText": "Outlook" }
+        ]
+      },
+      {
+        "questionId": "007",
+        "questionText": "Welche Praxis fördert häufige Integrationen im DevOps-Kontext?",
+        "correctAnswerId": "007001",
+        "answers": [
+          { "answerId": "007001", "answerText": "Continuous Integration" },
+          { "answerId": "007002", "answerText": "Manual Deployment" },
+          { "answerId": "007003", "answerText": "Annual Release" },
+          { "answerId": "007004", "answerText": "Sporadic Testing" }
+        ]
+      },
+      {
+        "questionId": "008",
+        "questionText": "Was ist ein DevOps-Pipeline?",
+        "correctAnswerId": "008001",
+        "answers": [
+          { "answerId": "008001", "answerText": "Automatisierte Folge von Schritten zur Softwarebereitstellung" },
+          { "answerId": "008002", "answerText": "Manuelles Backup-System" },
+          { "answerId": "008003", "answerText": "Hardware für Netzwerke" },
+          { "answerId": "008004", "answerText": "Ein VPN-Tunnel" }
+        ]
+      },
+      {
+        "questionId": "009",
+        "questionText": "Welches Konzept beschreibt die enge Zusammenarbeit von Entwicklern und Betrieb?",
+        "correctAnswerId": "009001",
+        "answers": [
+          { "answerId": "009001", "answerText": "DevOps" },
+          { "answerId": "009002", "answerText": "Waterfall" },
+          { "answerId": "009003", "answerText": "Big Bang" },
+          { "answerId": "009004", "answerText": "V-Modell" }
+        ]
+      },
+      {
+        "questionId": "010",
+        "questionText": "Was ist ein Vorteil von DevOps?",
+        "correctAnswerId": "010001",
+        "answers": [
+          { "answerId": "010001", "answerText": "Schnellere Fehlerbehebung" },
+          { "answerId": "010002", "answerText": "Lange Ausfallzeiten" },
+          { "answerId": "010003", "answerText": "Mehr manuelle Prozesse" },
+          { "answerId": "010004", "answerText": "Langsame Lieferungen" }
+        ]
+      },
+      {
+        "questionId": "011",
+        "questionText": "Welche Methode unterstützt DevOps durch flexible Entwicklung?",
+        "correctAnswerId": "011001",
+        "answers": [
+          { "answerId": "011001", "answerText": "Agile" },
+          { "answerId": "011002", "answerText": "Waterfall" },
+          { "answerId": "011003", "answerText": "Top-Down" },
+          { "answerId": "011004", "answerText": "Linear" }
+        ]
+      },
+      {
+        "questionId": "012",
+        "questionText": "Welches Monitoring-Tool wird oft in DevOps eingesetzt?",
+        "correctAnswerId": "012001",
+        "answers": [
+          { "answerId": "012001", "answerText": "Prometheus" },
+          { "answerId": "012002", "answerText": "Paint" },
+          { "answerId": "012003", "answerText": "Notepad" }
+        ]
+      }
+    ]
+  }
+  
