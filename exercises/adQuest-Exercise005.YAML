@@ -1,0 +1,2000 @@
+"'adQuest - Game' As screen":
+    Fill: =varGLBBackgroundColor
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =UpdateContext({varGAMAnsweringPlayer: 0});
+        UpdateContext({varGAMView: "GameStart"});
+        
+        // Create the QuizResult collection with an inital schema
+        ClearCollect(
+            varGAMQuizResult,
+            {
+                QuestionId: Blank(),
+                PlayerId: Blank(),
+                RespondTimeMs: 0,
+                AnswerTimeMs: 0,
+                AnswerResult: "",
+                GivenAnswer: ""
+            }
+        );
+        
+        // Remove the first dummy entry
+        Clear(varGAMQuizResult);
+
+    imgGAMLogo As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Height: =200
+        Image: ='adQuest-Logo'
+        Width: =200
+        ZIndex: =1
+
+    txtGAMVersionNumber As Text:
+        Align: ='TextCanvas.Align'.End
+        AutoHeight: =false
+        BorderStyle: =""
+        ContentLanguage: =""
+        DisplayMode: =DisplayMode.Edit
+        Font: =""
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontItalic: =false
+        FontStrikethrough: =false
+        FontUnderline: =false
+        Height: =20
+        Size: =12
+        TabIndex: =0
+        Text: |-
+            ="Version: " & varGLBVersionNumber & "  "
+        Tooltip: =""
+        VerticalAlign: =VerticalAlign.Middle
+        Visible: =true
+        Weight: ="Regular"
+        Width: =96
+        Wrap: =true
+        X: =Parent.Width - Self.Width
+        Y: =0
+        ZIndex: =2
+
+    audGAMBackgroundMusic As audioPlayback:
+        AutoStart: =true
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =varGLBBackgroundColor
+        Height: =40
+        Loop: =true
+        Media: ='adQuest-Backgroundmusic 01'
+        ShowControls: =false
+        Start: =varGLBAudioEnabled
+        Width: =Parent.Width / 2
+        Y: =Parent.Height - Self.Height
+        ZIndex: =3
+
+    cntGAMFinalBackground As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height
+        Visible: =If(varGAMView = "Final", true, false)
+        Width: =Parent.Width
+        ZIndex: =4
+
+        cntGAMGameFinal As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =500
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =800
+            X: =Parent.Width / 2 - Self.Width / 2
+            Y: =Parent.Height / 2 - Self.Height / 2
+            ZIndex: =1
+
+            "glrGAMFinal As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                BorderColor: =App.Theme.Colors.Darker40
+                DelayItemLoading: =true
+                Height: =300
+                Items: |
+                    =SortByColumns(
+                        varGAMStats,
+                        "Ranking",
+                        SortOrder.Ascending
+                    )
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: =70
+                Width: =Parent.Width - 200
+                X: =100
+                Y: =102
+                ZIndex: =1
+
+                txtGAMFinalAnswersNone As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Dancing Script'
+                    Height: =32
+                    Text: =ThisItem.NoAnswerCount
+                    VerticalAlign: =VerticalAlign.Middle
+                    Width: =50
+                    X: =txtGAMFinalAnswersWrong.X + txtGAMFinalAnswersWrong.Width + 10
+                    Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                    ZIndex: =2
+
+                txtGAMFinalAnswersWrong As Text:
+                    Align: ="Start"
+                    AutoHeight: =false
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Dancing Script'
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    Size: =14
+                    TabIndex: =0
+                    Text: =ThisItem.WrongAnswerCount
+                    Tooltip: =""
+                    VerticalAlign: =VerticalAlign.Middle
+                    Visible: =true
+                    Weight: ="Regular"
+                    Width: =50
+                    Wrap: =true
+                    X: =txtGAMFinalAnswersCorrect.X + txtGAMFinalAnswersCorrect.Width + 10
+                    Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                    ZIndex: =3
+
+                txtGAMFinalAnswersCorrect As Text:
+                    Align: ="Start"
+                    AutoHeight: =false
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Dancing Script'
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    Size: =14
+                    TabIndex: =0
+                    Text: =ThisItem.CorrectAnswerCount
+                    Tooltip: =""
+                    VerticalAlign: =VerticalAlign.Middle
+                    Visible: =true
+                    Weight: ="Regular"
+                    Width: =50
+                    Wrap: =true
+                    X: =txtGAMFinalResponseTime.X + txtGAMFinalResponseTime.Width + 10
+                    Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                    ZIndex: =4
+
+                txtGAMFinalResponseTime As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Dancing Script'
+                    Height: =32
+                    Text: =ThisItem.TotalAnswerTimeMs
+                    VerticalAlign: =VerticalAlign.Middle
+                    Width: =96
+                    X: =txtGAMFinalPlayerName.X + txtGAMFinalPlayerName.Width
+                    Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                    ZIndex: =5
+
+                txtGAMFinalPlayerName As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Dancing Script'
+                    Height: =32
+                    Size: =18
+                    Text: |-
+                        =Switch(ThisItem.PlayerId,
+                            1, If(varGLBPlayer1.IsActive, "Player 1"),
+                            2, If(varGLBPlayer2.IsActive, "Player 2"),
+                            3, If(varGLBPlayer3.IsActive, "Player 3"),
+                            4, If(varGLBPlayer4.IsActive, "Player 4"),
+                            'adquesti_01_questionmark')
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =Parent.TemplateWidth - imgGAMFinalPlayerImage.Width - 400
+                    X: =imgGAMFinalPlayerImage.X + imgGAMFinalPlayerImage.Width + 10
+                    Y: =Parent.TemplateHeight / 2 - Self.Height / 2
+                    ZIndex: =6
+
+                imgGAMFinalPlayerImage As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =Parent.TemplateHeight - 10
+                    Image: |-
+                        =Switch(ThisItem.PlayerId,
+                            1, If(varGLBPlayer1.IsActive, LookUp(varGLBAvatars, AvatarID = varGLBPlayer1.AvatarID, Image), adquesti_01_questionmark),
+                            2, If(varGLBPlayer2.IsActive, LookUp(varGLBAvatars, AvatarID = varGLBPlayer2.AvatarID, Image), adquesti_01_questionmark),
+                            3, If(varGLBPlayer3.IsActive, LookUp(varGLBAvatars, AvatarID = varGLBPlayer3.AvatarID, Image), adquesti_01_questionmark),
+                            4, If(varGLBPlayer4.IsActive, LookUp(varGLBAvatars, AvatarID = varGLBPlayer4.AvatarID, Image), adquesti_01_questionmark),
+                            'adquesti_01_questionmark')
+                    OnSelect: =Select(Parent)
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    Width: =Self.Height
+                    X: =imgGAMFinalRank.X + imgGAMFinalRank.Width
+                    Y: =5
+                    ZIndex: =7
+
+                imgGAMFinalRank As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =70
+                    Image: |-
+                        =Switch(ThisItem.Ranking,
+                            1, Rank01,
+                            2, Rank02,
+                            3, Rank03,
+                            4, Rank04)
+                    OnSelect: =Select(Parent)
+                    Width: =70
+                    ZIndex: =8
+
+            txtGAMFinalHeader As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Dancing Script'
+                Height: =60
+                Size: =40
+                Text: ="Final result"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Bold
+                Width: =glrGAMFinal.Width
+                X: =glrGAMFinal.X
+                Y: =30
+                ZIndex: =2
+
+    cntGAMGameBackground As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height
+        Visible: =If(varGAMView = "Game", true, false)
+        Width: =Parent.Width
+        ZIndex: =5
+
+        cntGAMGame As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =500
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =800
+            X: =Parent.Width / 2 - Self.Width / 2
+            Y: =Parent.Height / 2 - Self.Height / 2
+            ZIndex: =2
+
+            txtGAMQuestion As Text:
+                DisplayMode: =DisplayMode.Edit
+                Height: =186
+                Text: =varGAMCQQuestion
+                Width: =673
+                X: =95
+                Y: =30
+                ZIndex: =2
+
+            btnGAMAnswerD As Button:
+                AcceptsFocus: =true
+                AccessibleLabel: =""
+                Align: =Align.Left
+                Appearance: ='ButtonCanvas.Appearance'.Primary
+                BasePaletteColor: =varGLBBackgroundColor
+                BorderColor: =RGBA(152, 208, 70, 1)
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =""
+                FontItalic: =false
+                FontSize: =0
+                FontStrikethrough: =false
+                FontUnderline: =false
+                FontWeight: =""
+                Height: =50
+                Icon: =""
+                IconRotation: =0
+                IconStyle: ="Outline"
+                Layout: ="Icon before"
+                OnSelect: =varGAMCQAnswerD
+                TabIndex: =0
+                Text: =varGAMCQAnswerD
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =true
+                Width: =Parent.Width / 2 - 20
+                X: =btnGAMAnswerC.X + btnGAMAnswerC.Width + 10
+                Y: =370
+                ZIndex: =3
+
+            btnGAMAnswerC As Button:
+                AcceptsFocus: =true
+                AccessibleLabel: =""
+                Align: =Align.Left
+                Appearance: ='ButtonCanvas.Appearance'.Primary
+                BasePaletteColor: =varGLBBackgroundColor
+                BorderColor: =RGBA(152, 208, 70, 1)
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =""
+                FontItalic: =false
+                FontSize: =0
+                FontStrikethrough: =false
+                FontUnderline: =false
+                FontWeight: =""
+                Height: =50
+                Icon: =""
+                IconRotation: =0
+                IconStyle: ="Outline"
+                Layout: ="Icon before"
+                OnSelect: =
+                TabIndex: =0
+                Text: =varGAMCQAnswerC
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =true
+                Width: =Parent.Width / 2 - 20
+                X: =20
+                Y: =370
+                ZIndex: =5
+
+            btnGAMAnswerB As Button:
+                AcceptsFocus: =true
+                AccessibleLabel: =""
+                Align: =Align.Left
+                Appearance: ='ButtonCanvas.Appearance'.Primary
+                BasePaletteColor: =varGLBBackgroundColor
+                BorderColor: =RGBA(152, 208, 70, 1)
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =""
+                FontItalic: =false
+                FontSize: =0
+                FontStrikethrough: =false
+                FontUnderline: =false
+                FontWeight: =""
+                Height: =50
+                Icon: =""
+                IconRotation: =0
+                IconStyle: ="Outline"
+                Layout: ="Icon before"
+                OnSelect: =false
+                TabIndex: =0
+                Text: =varGAMCQAnswerB
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =true
+                Width: =Parent.Width / 2 - 20
+                X: =btnGAMAnswerA.X + btnGAMAnswerA.Width + 10
+                Y: =305
+                ZIndex: =7
+
+            btnGAMAnswerA As Button:
+                Align: =Align.Left
+                Appearance: ='ButtonCanvas.Appearance'.Primary
+                BasePaletteColor: =varGLBBackgroundColor
+                BorderColor: =RGBA(152, 208, 70, 1)
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Edit
+                Height: =50
+                Text: =varGAMCQAnswerA
+                VerticalAlign: =VerticalAlign.Middle
+                Width: =Parent.Width / 2 - 20
+                X: =20
+                Y: =305
+                ZIndex: =9
+
+            btnGAMNextQuestion As Button:
+                BasePaletteColor: =varGLBBackgroundColor
+                BorderColor: =RGBA(152, 208, 70, 1)
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Edit
+                Height: =50
+                OnSelect: |-
+                    =If(varGAMQIndex < CountRows(varGLBSelectedQuiz.questions),
+                        // advance to next question: set question-index, reset phases & timers
+                        UpdateContext({varGAMQIndex: varGAMQIndex + 1});  
+                    
+                        // Get current question and answer
+                        UpdateContext({varGAMCQ: Last(FirstN(varGLBSelectedQuiz.questions, varGAMQIndex))});
+                        UpdateContext({varGAMCQId: Value(varGAMCQ.id, 0)}); 
+                        UpdateContext({varGAMCQQuestion: Text(varGAMCQ.question, "")});
+                        UpdateContext({varGAMCQAnswerA: Text(varGAMCQ.answera, "")});
+                        UpdateContext({varGAMCQAnswerB: Text(varGAMCQ.answerb, "")});
+                        UpdateContext({varGAMCQAnswerC: Text(varGAMCQ.answerc, "")});
+                        UpdateContext({varGAMCQAnswerD: Text(varGAMCQ.answerd, "")});
+                        UpdateContext({varGAMCQCorrectAnswer: Text(varGAMCQ.correctAnswer, "")});
+                    
+                        // Reset the active player
+                        UpdateContext({varGAMAnsweringPlayer: 0 });
+                    
+                        // Question is not answered
+                        UpdateContext({ varGAMAnswered: false });
+                    
+                        Reset(tmrGAMMain); 
+                        Reset(tmrGAMSub);
+                        UpdateContext({varGAMWaitForAnswer: false});
+                        UpdateContext({varGAMWaitForPlayer: false });
+                        UpdateContext({varGAMWaitForPlayer: true });
+                    
+                        // focus hidden input for key capture
+                        UpdateContext({varGAMKey: ""});
+                        SetFocus(txtGAMKeyInput);
+                        ,
+                        // else: show final screen
+                        UpdateContext({varGAMView: "Final"});
+                    )
+                Text: |
+                    =If(
+                      varGAMQIndex < CountRows(varGLBSelectedQuiz.questions),
+                      "Next question",
+                      // if finished, go to summary
+                      "Finish"
+                    )
+                Visible: =varGAMAnswered
+                Width: =200
+                X: =Parent.Width - Self.Width - 10
+                Y: =Parent.Height - Self.Height - 10
+                ZIndex: =11
+
+            txtGAMQuestionID As Text:
+                Align: ='TextCanvas.Align'.Center
+                AutoHeight: =false
+                BorderStyle: =""
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                Font: =Font.'Dancing Script'
+                FontColor: =RGBA(0, 0, 0, 1)
+                FontItalic: =false
+                FontStrikethrough: =false
+                FontUnderline: =false
+                Height: =144
+                Size: =60
+                TabIndex: =0
+                Text: =varGAMCQId
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =true
+                Weight: ="Regular"
+                Width: =89
+                Wrap: =true
+                X: =6
+                Y: =30
+                ZIndex: =12
+
+        cntGAMKeyboard As groupContainer.manualLayoutContainer:
+            Height: =400
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =250
+            X: =1100
+            Y: =cntGAMGame.Y
+            ZIndex: =3
+
+            txtGAMPlayer4 As Text:
+                Align: ="Start"
+                AutoHeight: =false
+                BorderStyle: =""
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Dancing Script'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontItalic: =false
+                FontStrikethrough: =false
+                FontUnderline: =false
+                Height: =40
+                Size: =25
+                TabIndex: =0
+                Text: ="Player 4"
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =varGLBPlayer4.IsActive
+                Weight: ="Regular"
+                Width: =100
+                Wrap: =true
+                X: =120
+                Y: =320
+                ZIndex: =1
+
+            imgGAMVirtualPlayer4 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =70
+                Image: =LookUp(varGLBAvatars, AvatarID = varGLBPlayer4.AvatarID, Image)
+                RadiusBottomLeft: =40
+                RadiusBottomRight: =40
+                RadiusTopLeft: =40
+                RadiusTopRight: =40
+                Visible: =varGLBPlayer4.IsActive
+                Width: =70
+                X: =9
+                Y: =310
+                ZIndex: =2
+
+            imgGAMKeyboardCapP As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =80
+                Image: =keyboardcaps_P2_transparent
+                Visible: =varGLBPlayer4.IsActive
+                Width: =80
+                X: =40
+                Y: =310
+                ZIndex: =3
+
+            txtGAMAnswerPlayer4 As Text:
+                Align: ='TextCanvas.Align'.Center
+                AutoHeight: =false
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Fill: |-
+                    =With(
+                        {pid: 4},
+                        Switch(
+                            true,
+                    
+                            // Player has previously answered wrong or timed out → RED
+                            !IsEmpty(Filter(varGAMQuizResult, PlayerId = pid && QuestionId = varGAMCQId && AnswerResult in ["wrong", "timeout"])), Color.Red,
+                    
+                            // Player has previously answered correctly → GREEN
+                            !IsEmpty(Filter(varGAMQuizResult, PlayerId = pid && QuestionId = varGAMCQId && AnswerResult = "correct")), Color.Green,
+                    
+                            // Player is currently answering → YELLOW
+                            varGAMAnsweringPlayer = pid, Color.Yellow,
+                    
+                            // Default → BLACK
+                            Color.Black
+                        )
+                    )
+                Font: =Font.'Dancing Script'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontItalic: =false
+                FontStrikethrough: =false
+                FontUnderline: =false
+                Height: =40
+                Size: =20
+                TabIndex: =0
+                Text: =""
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =varGLBPlayer4.IsActive
+                Weight: ='TextCanvas.Weight'.Bold
+                Width: =40
+                Wrap: =true
+                X: =210
+                Y: =320
+                ZIndex: =4
+
+            txtGAMPlayer3 As Text:
+                Align: ="Start"
+                AutoHeight: =false
+                BorderStyle: =""
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Dancing Script'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontItalic: =false
+                FontStrikethrough: =false
+                FontUnderline: =false
+                Height: =40
+                Size: =25
+                TabIndex: =0
+                Text: ="Player 3"
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =varGLBPlayer3.IsActive
+                Weight: ="Regular"
+                Width: =100
+                Wrap: =true
+                X: =120
+                Y: =220
+                ZIndex: =5
+
+            imgGAMVirtualPlayer3 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =70
+                Image: =LookUp(varGLBAvatars, AvatarID = varGLBPlayer3.AvatarID, Image)
+                RadiusBottomLeft: =40
+                RadiusBottomRight: =40
+                RadiusTopLeft: =40
+                RadiusTopRight: =40
+                Visible: =varGLBPlayer3.IsActive
+                Width: =70
+                X: =9
+                Y: =210
+                ZIndex: =6
+
+            imgGAMKeyboardCapN As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =60
+                Image: =keyboardcaps_N_transparent
+                Visible: =varGLBPlayer3.IsActive
+                Width: =60
+                X: =50
+                Y: =210
+                ZIndex: =7
+
+            txtGAMAnswerPlayer3 As Text:
+                Align: ='TextCanvas.Align'.Center
+                AutoHeight: =false
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Fill: |-
+                    =With(
+                        {pid: 3},
+                        Switch(
+                            true,
+                    
+                            // Player has previously answered wrong or timed out → RED
+                            !IsEmpty(Filter(varGAMQuizResult, PlayerId = pid && QuestionId = varGAMCQId && AnswerResult in ["wrong", "timeout"])), Color.Red,
+                    
+                            // Player has previously answered correctly → GREEN
+                            !IsEmpty(Filter(varGAMQuizResult, PlayerId = pid && QuestionId = varGAMCQId && AnswerResult = "correct")), Color.Green,
+                    
+                            // Player is currently answering → YELLOW
+                            varGAMAnsweringPlayer = pid, Color.Yellow,
+                    
+                            // Default → BLACK
+                            Color.Black
+                        )
+                    )
+                Font: =Font.'Dancing Script'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontItalic: =false
+                FontStrikethrough: =false
+                FontUnderline: =false
+                Height: =40
+                Size: =20
+                TabIndex: =0
+                Text: =""
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =varGLBPlayer3.IsActive
+                Weight: ='TextCanvas.Weight'.Bold
+                Width: =40
+                Wrap: =true
+                X: =210
+                Y: =220
+                ZIndex: =8
+
+            txtGAMPlayer2 As Text:
+                Align: ="Start"
+                AutoHeight: =false
+                BorderStyle: =""
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Dancing Script'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontItalic: =false
+                FontStrikethrough: =false
+                FontUnderline: =false
+                Height: =40
+                Size: =25
+                TabIndex: =0
+                Text: ="Player 2"
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =varGLBPlayer2.IsActive
+                Weight: ="Regular"
+                Width: =100
+                Wrap: =true
+                X: =120
+                Y: =120
+                ZIndex: =9
+
+            imgGAMVirtualPlayer2 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =70
+                Image: =LookUp(varGLBAvatars, AvatarID = varGLBPlayer2.AvatarID, Image)
+                RadiusBottomLeft: =40
+                RadiusBottomRight: =40
+                RadiusTopLeft: =40
+                RadiusTopRight: =40
+                Visible: =varGLBPlayer2.IsActive
+                Width: =70
+                X: =10
+                Y: =100
+                ZIndex: =10
+
+            imgGAMKeyboardCapR As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =60
+                Image: =keyboardcaps_R_transparent
+                Visible: =varGLBPlayer2.IsActive
+                Width: =60
+                X: =50
+                Y: =120
+                ZIndex: =11
+
+            txtGAMAnswerPlayer2 As Text:
+                Align: ='TextCanvas.Align'.Center
+                AutoHeight: =false
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Fill: |-
+                    =With(
+                        {pid: 2},
+                        Switch(
+                            true,
+                    
+                            // Player has previously answered wrong or timed out → RED
+                            !IsEmpty(Filter(varGAMQuizResult, PlayerId = pid && QuestionId = varGAMCQId && AnswerResult in ["wrong", "timeout"])), Color.Red,
+                    
+                            // Player has previously answered correctly → GREEN
+                            !IsEmpty(Filter(varGAMQuizResult, PlayerId = pid && QuestionId = varGAMCQId && AnswerResult = "correct")), Color.Green,
+                    
+                            // Player is currently answering → YELLOW
+                            varGAMAnsweringPlayer = pid, Color.Yellow,
+                    
+                            // Default → BLACK
+                            Color.Black
+                        )
+                    )
+                Font: =Font.'Dancing Script'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontItalic: =false
+                FontStrikethrough: =false
+                FontUnderline: =false
+                Height: =40
+                Size: =20
+                TabIndex: =0
+                Text: =""
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =varGLBPlayer2.IsActive
+                Weight: ='TextCanvas.Weight'.Bold
+                Width: =40
+                Wrap: =true
+                X: =210
+                Y: =120
+                ZIndex: =12
+
+            txtGAMPlayer1 As Text:
+                Align: ="Start"
+                AutoHeight: =false
+                BorderStyle: =""
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Dancing Script'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontItalic: =false
+                FontStrikethrough: =false
+                FontUnderline: =false
+                Height: =40
+                Size: =25
+                TabIndex: =0
+                Text: ="Player 1"
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =varGLBPlayer1.IsActive
+                Weight: ="Regular"
+                Width: =100
+                Wrap: =true
+                X: =120
+                Y: =20
+                ZIndex: =13
+
+            imgGAMVirtualPlayer1 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =70
+                Image: =LookUp(varGLBAvatars, AvatarID = varGLBPlayer1.AvatarID, Image)
+                RadiusBottomLeft: =40
+                RadiusBottomRight: =40
+                RadiusTopLeft: =40
+                RadiusTopRight: =40
+                Visible: =varGLBPlayer1.IsActive
+                Width: =70
+                X: =10
+                Y: =10
+                ZIndex: =14
+
+            imgGAMKeyboardCapY As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =60
+                Image: =keyboardcaps_Y2_transparent
+                Visible: =varGLBPlayer1.IsActive
+                Width: =60
+                X: =56
+                Y: =10
+                ZIndex: =15
+
+            txtGAMAnswerPlayer1 As Text:
+                Align: ='TextCanvas.Align'.Center
+                AutoHeight: =false
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Fill: |-
+                    =With(
+                        {pid: 1},
+                        Switch(
+                            true,
+                    
+                            // Player has previously answered wrong or timed out → RED
+                            !IsEmpty(Filter(varGAMQuizResult, PlayerId = pid && QuestionId = varGAMCQId && AnswerResult in ["wrong", "timeout"])), Color.Red,
+                    
+                            // Player has previously answered correctly → GREEN
+                            !IsEmpty(Filter(varGAMQuizResult, PlayerId = pid && QuestionId = varGAMCQId && AnswerResult = "correct")), Color.Green,
+                    
+                            // Player is currently answering → YELLOW
+                            varGAMAnsweringPlayer = pid, Color.Yellow,
+                    
+                            // Default → BLACK
+                            Color.Black
+                        )
+                    )
+                Font: =Font.'Dancing Script'
+                FontColor: =Color.White
+                FontItalic: =false
+                FontStrikethrough: =false
+                FontUnderline: =false
+                Height: =40
+                Size: =20
+                TabIndex: =0
+                Text: =""
+                Tooltip: =""
+                VerticalAlign: =VerticalAlign.Middle
+                Visible: =varGLBPlayer1.IsActive
+                Weight: ='TextCanvas.Weight'.Bold
+                Width: =40
+                Wrap: =true
+                X: =210
+                Y: =20
+                ZIndex: =16
+
+    cntGAMGameStartBackground As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height
+        Visible: =If(varGAMView = "GameStart", true, false)
+        Width: =Parent.Width
+        ZIndex: =6
+
+        cntGAMGameStart As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =500
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =800
+            X: =Parent.Width / 2 - Self.Width / 2
+            Y: =Parent.Height / 2 - Self.Height / 2
+            ZIndex: =1
+
+            btnGAMReady As Button:
+                AcceptsFocus: =true
+                AccessibleLabel: =""
+                Align: =""
+                Appearance: ="Primary"
+                BasePaletteColor: =varGLBBackgroundColor
+                BorderColor: =RGBA(152, 208, 70, 1)
+                BorderRadius: =20
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =""
+                FontItalic: =false
+                FontSize: =0
+                FontStrikethrough: =false
+                FontUnderline: =false
+                FontWeight: =""
+                Height: =50
+                Icon: =""
+                IconRotation: =0
+                IconStyle: ="Outline"
+                Layout: ="Icon before"
+                OnSelect: |-
+                    =// Question is not answered
+                    UpdateContext({ varGAMAnswered: false });
+                    
+                    // Reset the active player
+                    UpdateContext({varGAMAnsweringPlayer: 0 });
+                    
+                    // current question index (1-based)
+                    UpdateContext({ varGAMQIndex: 1 });
+                    
+                    // Get current question and answer
+                    UpdateContext({varGAMCQ: Last(FirstN(varGLBSelectedQuiz.questions, varGAMQIndex))});
+                    UpdateContext({varGAMCQId: Value(varGAMCQ.id, 0)}); 
+                    UpdateContext({varGAMCQQuestion: Text(varGAMCQ.question, "")});
+                    UpdateContext({varGAMCQAnswerA: Text(varGAMCQ.answera, "")});
+                    UpdateContext({varGAMCQAnswerB: Text(varGAMCQ.answerb, "")});
+                    UpdateContext({varGAMCQAnswerC: Text(varGAMCQ.answerc, "")});
+                    UpdateContext({varGAMCQAnswerD: Text(varGAMCQ.answerd, "")});
+                    UpdateContext({varGAMCQCorrectAnswer: Text(varGAMCQ.correctAnswer, "")});
+                    
+                    // Create the QuizResult collection with an inital schema
+                    ClearCollect(
+                        varGAMQuizResult,
+                        {
+                            QuestionId: Blank(),
+                            PlayerId: Blank(),
+                            RespondTimeMs: 0,
+                            AnswerTimeMs: 0,
+                            AnswerResult: "",
+                            GivenAnswer: ""
+                        }
+                    );
+                    
+                    // Remove the first dummy role
+                    Clear(varGAMQuizResult);
+                    
+                    // Reset both timers
+                    Reset(tmrGAMMain); 
+                    Reset(tmrGAMSub);
+                    UpdateContext({varGAMWaitForAnswer: false });
+                    UpdateContext({varGAMWaitForPlayer: false });
+                    UpdateContext({varGAMWaitForPlayer: true });
+                    
+                    // Show games screen
+                    UpdateContext({varGAMView: "Game"});
+                    
+                    // focus hidden input for key capture
+                    UpdateContext({varGAMKey: ""});
+                    SetFocus(txtGAMKeyInput);
+                TabIndex: =0
+                Text: ="We are ready"
+                Tooltip: =""
+                VerticalAlign: =""
+                Visible: =true
+                Width: =200
+                X: =Parent.Width / 2 - Self.Width / 2
+                Y: =420
+                ZIndex: =6
+
+            cntGAMKGameStartKeyboard As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =380
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width - 40
+                X: =20
+                Y: =20
+                ZIndex: =7
+
+                txtGAMGameStartPlayer4 As Text:
+                    Align: ="Start"
+                    AutoHeight: =false
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Dancing Script'
+                    FontColor: =RGBA(0, 0, 0, 1)
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =40
+                    Size: =25
+                    TabIndex: =0
+                    Text: ="Player 4"
+                    Tooltip: =""
+                    VerticalAlign: =VerticalAlign.Middle
+                    Visible: =varGLBPlayer4.IsActive
+                    Weight: ="Regular"
+                    Width: =100
+                    Wrap: =true
+                    X: =582
+                    Y: =280
+                    ZIndex: =1
+
+                imgGAMGameStartVirtualPlayer4 As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =70
+                    Image: =LookUp(varGLBAvatars, AvatarID = varGLBPlayer4.AvatarID, Image)
+                    RadiusBottomLeft: =40
+                    RadiusBottomRight: =40
+                    RadiusTopLeft: =40
+                    RadiusTopRight: =40
+                    Visible: =varGLBPlayer4.IsActive
+                    Width: =70
+                    X: =459
+                    Y: =265
+                    ZIndex: =2
+
+                imgGAMGameStartKeyboardCapP As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =80
+                    Image: =keyboardcaps_P2_transparent
+                    Visible: =varGLBPlayer4.IsActive
+                    Width: =80
+                    X: =512
+                    Y: =260
+                    ZIndex: =3
+
+                txtGAMGameStartPlayer3 As Text:
+                    Align: ="Start"
+                    AutoHeight: =false
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Dancing Script'
+                    FontColor: =RGBA(0, 0, 0, 1)
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =40
+                    Size: =25
+                    TabIndex: =0
+                    Text: ="Player 3"
+                    Tooltip: =""
+                    VerticalAlign: =VerticalAlign.Middle
+                    Visible: =varGLBPlayer3.IsActive
+                    Weight: ="Regular"
+                    Width: =100
+                    Wrap: =true
+                    X: =167
+                    Y: =278
+                    ZIndex: =5
+
+                imgGAMGameStartVirtualPlayer3 As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =70
+                    Image: =LookUp(varGLBAvatars, AvatarID = varGLBPlayer3.AvatarID, Image)
+                    RadiusBottomLeft: =40
+                    RadiusBottomRight: =40
+                    RadiusTopLeft: =40
+                    RadiusTopRight: =40
+                    Visible: =varGLBPlayer3.IsActive
+                    Width: =70
+                    X: =44
+                    Y: =265
+                    ZIndex: =6
+
+                imgGAMGameStartKeyboardCapN As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =60
+                    Image: =keyboardcaps_N_transparent
+                    Visible: =varGLBPlayer3.IsActive
+                    Width: =60
+                    X: =97
+                    Y: =270
+                    ZIndex: =7
+
+                txtGAMGameStartPlayer2 As Text:
+                    Align: ="Start"
+                    AutoHeight: =false
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Dancing Script'
+                    FontColor: =RGBA(0, 0, 0, 1)
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =40
+                    Size: =25
+                    TabIndex: =0
+                    Text: ="Player 2"
+                    Tooltip: =""
+                    VerticalAlign: =VerticalAlign.Middle
+                    Visible: =varGLBPlayer2.IsActive
+                    Weight: ="Regular"
+                    Width: =100
+                    Wrap: =true
+                    X: =577
+                    Y: =192
+                    ZIndex: =9
+
+                imgGAMGameStartVirtualPlayer2 As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =70
+                    Image: =LookUp(varGLBAvatars, AvatarID = varGLBPlayer2.AvatarID, Image)
+                    RadiusBottomLeft: =40
+                    RadiusBottomRight: =40
+                    RadiusTopLeft: =40
+                    RadiusTopRight: =40
+                    Visible: =varGLBPlayer2.IsActive
+                    Width: =70
+                    X: =459
+                    Y: =177
+                    ZIndex: =10
+
+                imgGAMGameStartKeyboardCapR As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =60
+                    Image: =keyboardcaps_R_transparent
+                    Visible: =varGLBPlayer2.IsActive
+                    Width: =60
+                    X: =517
+                    Y: =182
+                    ZIndex: =11
+
+                txtGAMGameStartPlayer1 As Text:
+                    Align: ="Start"
+                    AutoHeight: =false
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Dancing Script'
+                    FontColor: =RGBA(0, 0, 0, 1)
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =40
+                    Size: =25
+                    TabIndex: =0
+                    Text: ="Player 1"
+                    Tooltip: =""
+                    VerticalAlign: =VerticalAlign.Middle
+                    Visible: =varGLBPlayer1.IsActive
+                    Weight: ="Regular"
+                    Width: =100
+                    Wrap: =true
+                    X: =167
+                    Y: =192
+                    ZIndex: =13
+
+                imgGAMGameStartVirtualPlayer1 As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =70
+                    Image: =LookUp(varGLBAvatars, AvatarID = varGLBPlayer1.AvatarID, Image)
+                    RadiusBottomLeft: =40
+                    RadiusBottomRight: =40
+                    RadiusTopLeft: =40
+                    RadiusTopRight: =40
+                    Visible: =varGLBPlayer1.IsActive
+                    Width: =70
+                    X: =49
+                    Y: =175
+                    ZIndex: =14
+
+                imgGAMGameStartKeyboardCapY As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =60
+                    Image: =keyboardcaps_Y2_transparent
+                    Visible: =varGLBPlayer1.IsActive
+                    Width: =60
+                    X: =107
+                    Y: =180
+                    ZIndex: =15
+
+                TextCanvas1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =153
+                    Size: =20
+                    Text: |-
+                        ="First hit your key player. Then you can lock in your answer using A, B, C, or D. That’s right, letters. No emojis. No interpretive dance. No ancient runes.
+                        You’ve got 10 seconds to hit that buzzer. Then you get another 5 seconds to answer. That's it..."
+                    Width: =665
+                    X: =44
+                    Y: =0
+                    ZIndex: =16
+
+    cntGAMActivePlayer As groupContainer.manualLayoutContainer:
+        RadiusBottomLeft: =10
+        RadiusBottomRight: =10
+        RadiusTopLeft: =10
+        RadiusTopRight: =10
+        Visible: =varGAMView = "Game" && !varGAMAnswered
+        Width: =250
+        X: =10
+        Y: =225
+        ZIndex: =7
+
+        imgGAMActivePlayer As image:
+            BorderColor: =App.Theme.Colors.Darker40
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Image: |-
+                =Switch(varGAMAnsweringPlayer,
+                    1, If(varGLBPlayer1.IsActive, LookUp(varGLBAvatars, AvatarID = varGLBPlayer1.AvatarID, Image), adquesti_01_questionmark),
+                    2, If(varGLBPlayer2.IsActive, LookUp(varGLBAvatars, AvatarID = varGLBPlayer2.AvatarID, Image), adquesti_01_questionmark),
+                    3, If(varGLBPlayer3.IsActive, LookUp(varGLBAvatars, AvatarID = varGLBPlayer3.AvatarID, Image), adquesti_01_questionmark),
+                    4, If(varGLBPlayer4.IsActive, LookUp(varGLBAvatars, AvatarID = varGLBPlayer4.AvatarID, Image), adquesti_01_questionmark),
+                    'adquesti_01_questionmark')
+            X: =Parent.Width / 2 - Self.Width / 2
+            Y: =txtGAMActivePlayer.Y + txtGAMActivePlayer.Height
+            ZIndex: =1
+
+        txtGAMActivePlayer As Text:
+            Align: ='TextCanvas.Align'.Center
+            AutoHeight: =false
+            BorderStyle: =""
+            ContentLanguage: =""
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Dancing Script'
+            FontColor: =RGBA(255, 255, 255, 1)
+            FontItalic: =false
+            FontStrikethrough: =false
+            FontUnderline: =false
+            Height: =75
+            Size: =25
+            TabIndex: =0
+            Text: |-
+                =Switch(true,
+                    varGAMWaitForPlayer && IsBlank(varGAMAnsweringPlayer) || varGAMAnsweringPlayer = 0, "Wait for player",
+                    varGAMWaitForPlayer && !IsBlank(varGAMAnsweringPlayer) && varGAMAnsweringPlayer <> 0, "Player " & varGAMAnsweringPlayer,
+                    varGAMWaitForAnswer && !IsBlank(varGAMAnsweringPlayer) && varGAMAnsweringPlayer <> 0, "Wait for answer from player " & varGAMAnsweringPlayer,
+                    "---"
+                )
+            Tooltip: =""
+            VerticalAlign: =VerticalAlign.Middle
+            Visible: =true
+            Weight: ="Regular"
+            Width: =Parent.Width
+            Wrap: =true
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+    cntGAMTimerControls As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =240
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =250
+        X: =Parent.Width - Self.Width - 10
+        Y: =Parent.Height - Self.Height - 10
+        ZIndex: =8
+
+        txtGAMSecondsLeft As Text:
+            Align: ='TextCanvas.Align'.Center
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Dancing Script'
+            FontColor: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height - 20  
+            Size: =60
+            Text: |
+                =Switch(
+                    true,
+                    varGAMWaitForPlayer, Text(RoundDown(tmrGAMMain.Value / 1000, 0), "[$-en-US]00"),
+                    varGAMWaitForAnswer, Text(RoundDown(tmrGAMSub.Value / 1000, 0), "[$-en-US]00"),
+                    ""
+                )
+            VerticalAlign: =VerticalAlign.Middle
+            Width: =Parent.Width - 20
+            X: =10
+            Y: =10
+            ZIndex: =5
+
+    cntGAMWorkerControls As groupContainer.manualLayoutContainer:
+        Height: =333
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =250
+        X: =10
+        Y: =426
+        ZIndex: =9
+
+        btnGAMSimulateGame As Button:
+            AcceptsFocus: =true
+            AccessibleLabel: =""
+            Align: =""
+            Appearance: ="Primary"
+            BasePaletteColor: =
+            BorderStyle: =""
+            ContentLanguage: =""
+            DisplayMode: =DisplayMode.Edit
+            Font: =""
+            FontItalic: =false
+            FontSize: =0
+            FontStrikethrough: =false
+            FontUnderline: =false
+            FontWeight: =""
+            Height: =36
+            Icon: =""
+            IconRotation: =0
+            IconStyle: ="Outline"
+            Layout: ="Icon before"
+            OnSelect: |-
+                =// Quiz Testdaten Generator für Button OnSelect
+                Clear(varGAMQuizResult);
+                
+                // Hilfsvariablen für zufällige Generierung
+                UpdateContext({
+                    varGAMAnswerOptions: ["A", "B", "C", "D"],
+                    varGAMPlayerIds: [1, 2, 3, 4]
+                });
+                
+                
+                // Fragen 1-2: Alle 4 Spieler haben Timeout
+                ForAll(
+                    [1, 2],
+                    With({ qId: ThisRecord.Value },
+                        ForAll(
+                            varGAMPlayerIds,
+                            Collect(
+                                varGAMQuizResult,
+                                {
+                                    QuestionId: qId,
+                                    PlayerId: ThisRecord.Value,
+                                    RespondTimeMs: 10000,
+                                    AnswerTimeMs: 0,
+                                    AnswerResult: "timeout",
+                                    GivenAnswer: ""
+                                }
+                            )
+                        )
+                    )
+                );
+                
+                // Frage 3: 1 Spieler falsche Antwort, 3 Timeout
+                UpdateContext({ varGAMWrongPlayer: RandBetween(1, 4) });
+                ForAll(
+                    varGAMPlayerIds,
+                    Collect(
+                        varGAMQuizResult,
+                        {
+                            QuestionId: 3,
+                            PlayerId: ThisRecord.Value,
+                            RespondTimeMs: If(
+                                ThisRecord.Value = varGAMWrongPlayer,
+                                RandBetween(500, 9999),
+                                10000
+                            ),
+                            AnswerTimeMs: If(
+                                ThisRecord.Value = varGAMWrongPlayer,
+                                RandBetween(500, 4999),
+                                10000
+                            ),
+                            AnswerResult: If(
+                                ThisRecord.Value = varGAMWrongPlayer,
+                                "wrong",
+                                "timeout"
+                            ),
+                            GivenAnswer: If(
+                                ThisRecord.Value = varGAMWrongPlayer,
+                                Index(varGAMAnswerOptions, RandBetween(1, 4)).Value,
+                                ""
+                            )
+                        }
+                    )
+                );
+                
+                // Fragen 4-5: 2 Spieler falsche Antwort (jeweils unterschiedliche Buchstaben), 2 Timeout
+                ForAll(
+                    [4, 5] As q,
+                    With(
+                        {
+                            qId: q.Value,
+                            // Zwei zufällige Spieler
+                            wrongPlayers: FirstN( Shuffle(varGAMPlayerIds), 2 ),
+                            // Zwei zufällige Antwort‐Optionen
+                            wrongAnswers: FirstN( Shuffle(varGAMAnswerOptions), 2 )
+                        },
+                        // 1) Falsche Antworten: je „wrongPlayer“ eine eindeutige Antwort aus wrongAnswers
+                        ForAll(
+                            Sequence( CountRows(wrongPlayers) ) As seq,
+                            With(
+                                {
+                                    playerId:   Index(wrongPlayers, seq.Value).Value,
+                                    answerText: Index(wrongAnswers, seq.Value).Value,
+                                    respondT:   RandBetween(500, 9999),
+                                    answerT:    RandBetween(1000, 4999)
+                                },
+                                Collect(
+                                    varGAMQuizResult,
+                                    {
+                                        QuestionId:    qId,
+                                        PlayerId:      playerId,
+                                        RespondTimeMs: respondT,
+                                        AnswerTimeMs:  answerT,
+                                        AnswerResult:  "wrong",
+                                        GivenAnswer:   answerText
+                                    }
+                                )
+                            )
+                        );
+                        // 2) Timeouts für alle restlichen Spieler
+                        ForAll(
+                            varGAMPlayerIds As p,
+                            If(
+                                !(p.Value in wrongPlayers),
+                                Collect(
+                                    varGAMQuizResult,
+                                    {
+                                        QuestionId:    qId,
+                                        PlayerId:      p.Value,
+                                        RespondTimeMs: 10000,
+                                        AnswerTimeMs:  0,
+                                        AnswerResult:  "timeout",
+                                        GivenAnswer:   ""
+                                    }
+                                )
+                            )
+                        )
+                    )
+                );
+                
+                // Fragen 6-15: je 1 zufälliger Spieler richtige Antwort, Rest keine Antwort
+                ForAll(
+                    Sequence(10, 6) As q,
+                    With(
+                        {
+                            qId: q.Value,
+                            correctPlayer: RandBetween(1, 4),
+                            correctAnswer: Index(varGAMAnswerOptions, RandBetween(1, 4)).Value
+                        },
+                        // 1) Korrekte Antwort für den ausgewählten Spieler
+                        Collect(
+                            varGAMQuizResult,
+                            {
+                                QuestionId:    qId,
+                                PlayerId:      correctPlayer,
+                                RespondTimeMs: RandBetween(500, 9999),
+                                AnswerTimeMs:  RandBetween(1000, 4999),
+                                AnswerResult:  "correct",
+                                GivenAnswer:   correctAnswer
+                            }
+                        );
+                        // 2) Timeouts für alle anderen Spieler
+                        ForAll(
+                            varGAMPlayerIds As p,
+                            If(
+                                p.Value <> correctPlayer,
+                                Collect(
+                                    varGAMQuizResult,
+                                    {
+                                        QuestionId:    qId,
+                                        PlayerId:      p.Value,
+                                        RespondTimeMs: 0,
+                                        AnswerTimeMs:  0,
+                                        AnswerResult:  "",
+                                        GivenAnswer:   ""
+                                    }
+                                )
+                            )
+                        )
+                    )
+                );
+                
+                // Fragen 16-18: 1 falsche Antwort, 1 richtige Antwort, Rest Timeout
+                ForAll(
+                    Sequence(3, 16) As q,
+                    // Stufe 1: shuffle die Spieler einmal
+                    With(
+                        {
+                            qId: q.Value,
+                            shuffledPlayers: Shuffle(varGAMPlayerIds)
+                        },
+                        // Stufe 2: bestimme wrong/ correct und shuffle gleichzeitig die Antworten
+                        With(
+                            {
+                                wrongPlayer: First(shuffledPlayers).Value,
+                                correctPlayer: Last(shuffledPlayers).Value,
+                                shuffledAnswers: Shuffle(varGAMAnswerOptions)
+                            },
+                            // 1) Falsche Antwort
+                            Collect(
+                                varGAMQuizResult,
+                                {
+                                    QuestionId:    qId,
+                                    PlayerId:      wrongPlayer,
+                                    RespondTimeMs: RandBetween(500, 9999),
+                                    AnswerTimeMs:  RandBetween(500, 4999),
+                                    AnswerResult:  "wrong",
+                                    GivenAnswer:   First(shuffledAnswers).Value
+                                }
+                            );
+                            // 2) Richtige Antwort
+                            Collect(
+                                varGAMQuizResult,
+                                {
+                                    QuestionId:    qId,
+                                    PlayerId:      correctPlayer,
+                                    RespondTimeMs: RandBetween(500, 9999),
+                                    AnswerTimeMs:  RandBetween(500, 4999),
+                                    AnswerResult:  "correct",
+                                    GivenAnswer:   Last(shuffledAnswers).Value
+                                }
+                            );
+                            // 3) Timeouts für alle restlichen Spieler
+                            ForAll(
+                                varGAMPlayerIds As p,
+                                If(
+                                    p.Value <> wrongPlayer && p.Value <> correctPlayer,
+                                    Collect(
+                                        varGAMQuizResult,
+                                        {
+                                            QuestionId:    qId,
+                                            PlayerId:      p.Value,
+                                            RespondTimeMs: 0,
+                                            AnswerTimeMs:  0,
+                                            AnswerResult:  "",
+                                            GivenAnswer:   ""
+                                        }
+                                    )
+                                )
+                            )
+                        )
+                    )
+                );
+                
+                // Fragen 19-21: 2 falsche Antworten (jeweils unterschiedlich), 1 richtige Antwort, 1 Timeout
+                ForAll(
+                    Sequence(3, 19) As q,
+                    // Stufe 1: Table der Spieler shuffeln
+                    With(
+                        {
+                            qId: q.Value,
+                            playersShuffled: Shuffle(varGAMPlayerIds)
+                        },
+                        // Stufe 2: wrongPlayers und correctPlayer bestimmen, sowie Antworten shuffeln
+                        With(
+                            {
+                                wrongPlayers: FirstN(playersShuffled, 2),
+                                correctPlayer: First( Filter(playersShuffled, !(Value in FirstN(playersShuffled, 2)) ) ).Value,
+                                answersShuffled: Shuffle(varGAMAnswerOptions)
+                            },
+                            // 1) Zwei falsche Antworten mit unterschiedlichen Buchstaben
+                            ForAll(
+                                Sequence(2) As seq,
+                                With(
+                                    {
+                                        playerId:   Index(wrongPlayers, seq.Value).Value,
+                                        answerText: Index(answersShuffled, seq.Value).Value
+                                    },
+                                    Collect(
+                                        varGAMQuizResult,
+                                        {
+                                            QuestionId:    qId,
+                                            PlayerId:      playerId,
+                                            RespondTimeMs: RandBetween(500, 9999),
+                                            AnswerTimeMs:  RandBetween(500, 49999),
+                                            AnswerResult:  "wrong",
+                                            GivenAnswer:   answerText
+                                        }
+                                    )
+                                )
+                            );
+                            // 2) Eine korrekte Antwort
+                            Collect(
+                                varGAMQuizResult,
+                                {
+                                    QuestionId:    qId,
+                                    PlayerId:      correctPlayer,
+                                    RespondTimeMs: RandBetween(500, 9999),
+                                    AnswerTimeMs:  RandBetween(500, 4999),
+                                    AnswerResult:  "correct",
+                                    GivenAnswer:   Last(answersShuffled).Value
+                                }
+                            );
+                            // 3) Timeout für den verbleibenden Spieler
+                            ForAll(
+                                varGAMPlayerIds As p,
+                                If(
+                                    !(p.Value in FirstN(playersShuffled, 2)) && p.Value <> correctPlayer,
+                                    Collect(
+                                        varGAMQuizResult,
+                                        {
+                                            QuestionId:    qId,
+                                            PlayerId:      p.Value,
+                                            RespondTimeMs: 0,
+                                            AnswerTimeMs:  0,
+                                            AnswerResult:  "",
+                                            GivenAnswer:   ""
+                                        }
+                                    )
+                                )
+                            )
+                        )
+                    )
+                );
+                
+                // Bestätigung der Generierung
+                Notify(
+                    "Testdaten erfolgreich generiert! " & CountRows(varGAMQuizResult) & " Datensätze erstellt.",
+                    NotificationType.Success
+                );
+                
+                // ############################################################################################
+                
+                // Create the QuizResult collection with an inital schema
+                ClearCollect(
+                    varGAMStats,
+                    {
+                        PlayerId: Blank(),
+                        PlayerName: "",
+                        AvatarImage: "",
+                        CorrectAnswerCount: 0,
+                        WrongAnswerCount: 0,
+                        NoAnswerCount: 0,
+                        AverageRespondTimeMs: 0,
+                        AverageAnswerTimeMs: 0,
+                        TotalAnswerTimeMs: 0,
+                        Ranking: 0
+                    }
+                );
+                
+                // Remove the first dummy role
+                Clear(varGAMStats);
+                
+                // Create statistics
+                ForAll(
+                    [1, 2, 3, 4] As p,
+                    Collect(
+                        varGAMStats,
+                        {
+                            PlayerId: p.Value,
+                            PlayerName: "Player " & p.Value,
+                            AvatarImage: "",
+                            CorrectAnswerCount: CountIf(varGAMQuizResult, PlayerId = p.Value && AnswerResult = "correct"),
+                            WrongAnswerCount: CountIf(varGAMQuizResult, PlayerId = p.Value && AnswerResult = "wrong"),
+                            NoAnswerCount: CountIf(varGAMQuizResult, PlayerId = p.Value && (AnswerResult = "" || AnswerResult = "timeout")),
+                            AverageRespondTimeMs: Round(Average(Filter(varGAMQuizResult, PlayerId = p.Value), RespondTimeMs), 0),
+                            AverageAnswerTimeMs: Round(Average(Filter(varGAMQuizResult, PlayerId = p.Value), AnswerTimeMs), 0),
+                            TotalAnswerTimeMs: Round(Average(Filter(varGAMQuizResult, PlayerId = p.Value), RespondTimeMs), 0) + Round(Average(Filter(varGAMQuizResult, PlayerId = p.Value), AnswerTimeMs), 0)
+                        }
+                    )
+                );
+                
+                // Calculate ranking (first answer, than 
+                ForAll(
+                    Sequence( CountRows(varGAMStats) ),
+                    With(
+                        {
+                            RankIndex: Value,  
+                            SortedList: SortByColumns(
+                                varGAMStats,
+                                "CorrectAnswerCount", SortOrder.Descending,
+                                "TotalAnswerTimeMs",   SortOrder.Ascending
+                            )
+                        },
+                        Patch(
+                            varGAMStats,
+                            LookUp(
+                                varGAMStats,
+                                PlayerId = Last( FirstN( SortedList, RankIndex ) ).PlayerId
+                            ),
+                            { Ranking: RankIndex }
+                        )
+                    )
+                );
+                
+                // Set the question index to the last question
+                UpdateContext({varGAMQIndex: CountRows(varGLBSelectedQuiz.questions)});
+                
+                // Reset the active player
+                UpdateContext({varGAMAnsweringPlayer: 0 });
+                
+                // Set question to answered to activate the final button
+                UpdateContext({ varGAMAnswered: true });
+                
+                Reset(tmrGAMMain); 
+                Reset(tmrGAMSub);
+                UpdateContext({varGAMWaitForAnswer: false});
+                UpdateContext({varGAMWaitForPlayer: false });
+            TabIndex: =0
+            Text: ="Simulate game"
+            Tooltip: =""
+            VerticalAlign: =""
+            Visible: =true
+            Width: =Parent.Width - 20
+            X: =10
+            Y: =252
+            ZIndex: =1
+
+        tmrGAMSub As timer:
+            AutoPause: =false
+            BorderColor: =App.Theme.Colors.Primary
+            Color: =App.Theme.Colors.PrimaryForeground
+            DisabledBorderColor: =RGBA(244, 244, 244, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Duration: =5000
+            Fill: =App.Theme.Colors.Primary
+            Font: =App.Theme.Font
+            Height: =36
+            HoverBorderColor: =App.Theme.Colors.Darker10
+            HoverColor: =App.Theme.Colors.PrimaryForeground
+            HoverFill: =App.Theme.Colors.Darker10
+            OnTimerEnd: |-
+                =// Timed-out, register player in quizresult
+                Collect(
+                    varGAMQuizResult,
+                    {
+                        QuestionId: varGAMCQId,
+                        PlayerId: varGAMAnsweringPlayer,
+                        RespondTimeMs: tmrGAMMain.Duration - tmrGAMMain.Value,
+                        AnswerTimeMs: tmrGAMSub.Duration,
+                        AnswerResult: "timeout",
+                        GivenAnswer: ""
+                    }
+                );
+                
+                // Reset answering player
+                UpdateContext({varGAMAnsweringPlayer: 0});
+                
+                // Reset both timers
+                Reset(tmrGAMMain);
+                Reset(tmrGAMSub);
+                UpdateContext({varGAMWaitForPlayer: false});
+                UpdateContext({varGAMWaitForPlayer: true});
+            OnTimerStart: |-
+                =// flag: has the current question been answered or timed out?
+                UpdateContext({ varGAMAnswered: false });
+                
+                // focus hidden input for key capture
+                SetFocus(txtGAMKeyInput);
+            PressedBorderColor: =App.Theme.Colors.Darker40
+            PressedColor: =Self.Color
+            PressedFill: =App.Theme.Colors.Darker40
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Start: =varGAMWaitForAnswer
+            Width: =Parent.Width -20
+            X: =10
+            Y: =190
+            ZIndex: =2
+
+        tmrGAMMain As timer:
+            AutoPause: =false
+            BorderColor: =App.Theme.Colors.Primary
+            Color: =App.Theme.Colors.PrimaryForeground
+            DisabledBorderColor: =RGBA(244, 244, 244, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Duration: =10000
+            Fill: =App.Theme.Colors.Primary
+            Font: =
+            Height: =36
+            HoverBorderColor: =App.Theme.Colors.Darker10
+            HoverColor: =App.Theme.Colors.PrimaryForeground
+            HoverFill: =App.Theme.Colors.Darker10
+            OnTimerEnd: |
+                =// main timer expired before player selected → record timeout → end both timer
+                Reset(tmrGAMMain); 
+                Reset(tmrGAMSub);
+                UpdateContext({varGAMWaitForPlayer: false});
+                UpdateContext({varGAMWaitForAnswer: false});
+                
+                // record timeout as wrong with max response time
+                // Timed-out, register player in quizresult
+                ForAll(
+                    [1, 2, 3, 4],
+                    If(
+                        IsBlank(
+                            LookUp(varGAMQuizResult, QuestionId = varGAMCQId && PlayerId = Value, true)
+                        ),
+                        Collect(
+                            varGAMQuizResult,
+                            {QuestionId: varGAMCQId, PlayerId: Value, RespondTimeMs: 10000, AnswerTimeMs: 5000, AnswerResult: "timeout"}
+                        )
+                    )
+                );
+                
+                // Mark as answered to enable the "next" button
+                UpdateContext({varGAMAnswered: true});
+            OnTimerStart: |-
+                =UpdateContext({varGAMAnsweringPlayer: Blank()});
+            PressedBorderColor: =App.Theme.Colors.Darker40
+            PressedColor: =Self.Color
+            PressedFill: =App.Theme.Colors.Darker40
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Reset: =varGAMAnswered
+            Start: =varGAMWaitForPlayer
+            Width: =Parent.Width - 20
+            X: =10
+            Y: =130
+            ZIndex: =3
+
+        btnGAMStartAgain As Button:
+            AcceptsFocus: =true
+            AccessibleLabel: =""
+            Align: =""
+            Appearance: ="Primary"
+            BasePaletteColor: =
+            BorderStyle: =""
+            ContentLanguage: =""
+            DisplayMode: =DisplayMode.Edit
+            Font: =""
+            FontItalic: =false
+            FontSize: =0
+            FontStrikethrough: =false
+            FontUnderline: =false
+            FontWeight: =""
+            Height: =36
+            Icon: =""
+            IconRotation: =0
+            IconStyle: ="Outline"
+            Layout: ="Icon before"
+            OnSelect: |-
+                =UpdateContext({varGAMAnsweringPlayer: Blank()});
+                UpdateContext({varGAMView: "GameStart"});
+            TabIndex: =0
+            Text: ="Start again"
+            Tooltip: =""
+            VerticalAlign: =""
+            Visible: =true
+            Width: =Parent.Width - 20
+            X: =10
+            Y: =72
+            ZIndex: =4
+
+        "txtGAMKeyInput As 'Text input'":
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =varGLBBackgroundColor
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =41
+            OnChange: |-
+                =// capture single char then clear field
+                UpdateContext({ varGAMKey: Upper(Left(Self.Value, 1)) });
+                
+                Notify("varGAMKey: " & varGAMKey & "; varGAMAnswered: " & varGAMAnswered & "; varGAMWaitForPlayer: " & varGAMWaitForPlayer & "; varGAMWaitForAnswer: " & varGAMWaitForAnswer, NotificationType.Information);
+                
+                // Just allow any input, when question is not answered 
+                If(varGAMAnswered = false,
+                    // --- Phase 1: Check if valid buzzer key
+                    If(varGAMKey in ["Y","R","N","P"] && varGAMWaitForPlayer,
+                        // Map given key to player (is used by the image and text control for visualization)
+                        UpdateContext({varGAMAnsweringPlayer: Switch(varGAMKey,"Y",1,"R",2,"N",3,"P",4,0)});
+                        
+                        // Player didn't answered wrong before
+                        If(IsBlank(LookUp(varGAMQuizResult, PlayerId = varGAMAnsweringPlayer && QuestionId = varGAMCQId)), 
+                            
+                            // Reset timer to wait for an answer
+                            Reset(tmrGAMSub);
+                            // Stop phase 1
+                            UpdateContext({varGAMWaitForPlayer: false});
+                            // Start phase 2
+                            UpdateContext({varGAMWaitForAnswer: true})
+                        )
+                    // --- Phase 2: Player of phase 1 answers the question
+                    , varGAMKey in ["A","B","C","D"] && varGAMWaitForAnswer,     
+                        // Stop sub-timer in any case (if answer is right = next question, is answer is wrong = 5 seconds timer must restart
+                        // Also we lock phase 2, so multiple inputs are ignored
+                        UpdateContext({varGAMWaitForAnswer: false});
+                        Reset(tmrGAMSub);
+                
+                        // --- Right answer ---
+                        If(Upper(varGAMCQCorrectAnswer) = varGAMKey,
+                            Collect(
+                                varGAMQuizResult,
+                                {
+                                    QuestionId: varGAMCQId,
+                                    PlayerId: varGAMAnsweringPlayer,
+                                    RespondTimeMs: tmrGAMMain.Duration - tmrGAMMain.Value,
+                                    AnswerTimeMs: tmrGAMSub.Duration - tmrGAMSub.Value,
+                                    AnswerResult: "correct",
+                                    GivenAnswer: varGAMKey
+                                }
+                            );
+                            UpdateContext({varGAMAnswered: true})
+                        ,
+                            // --- Wrong answer ---
+                            Collect(
+                                varGAMQuizResult,
+                                {
+                                    QuestionId: varGAMCQId,
+                                    PlayerId: varGAMAnsweringPlayer,
+                                    RespondTimeMs: tmrGAMMain.Duration - tmrGAMMain.Value,
+                                    AnswerTimeMs: tmrGAMSub.Duration - tmrGAMSub.Value,
+                                    AnswerResult: "wrong",
+                                    GivenAnswer: varGAMKey
+                                }
+                            );
+                
+                            // Check if all active players have already answered
+                            ClearCollect(
+                                varGAMActivePlayers,
+                                Table(
+                                    If(varGLBPlayer1.IsActive, {PlayerId: 1}),
+                                    If(varGLBPlayer2.IsActive, {PlayerId: 2}),
+                                    If(varGLBPlayer3.IsActive, {PlayerId: 3}),
+                                    If(varGLBPlayer4.IsActive, {PlayerId: 4})
+                                )
+                            );
+                
+                            // If no active player is left without an answer, mark question as answered
+                            If(CountRows(varGAMActivePlayers) = CountRows(Filter(varGAMQuizResult,QuestionId = varGAMCQId && AnswerResult = "wrong")), 
+                                UpdateContext({varGAMAnswered: true})
+                            );
+                            Notify(First(varGAMQuizResult).QuestionId);
+                
+                            Reset(tmrGAMMain);
+                            UpdateContext({varGAMWaitForPlayer: false});
+                            UpdateContext({varGAMWaitForPlayer: true});
+                        )
+                    );
+                );
+                
+                UpdateContext({varGAMKey: ""});
+                Reset(txtGAMKeyInput);
+                SetFocus(txtGAMKeyInput);
+            TriggerOutput: ='TextInputCanvas.TriggerOutput'.Keypress
+            Visible: =true
+            Width: =Parent.Width - 20   
+            X: =10
+            Y: =10
+            ZIndex: =5
+
+        rctGAMHideWorkerControls As rectangle:
+            BorderColor: =App.Theme.Colors.Darker40
+            Fill: =varGLBBackgroundColor
+            Height: =Parent.Height
+            Width: =Parent.Width
+            ZIndex: =6
+
+    txtGAMQuizName As Text:
+        Align: ='TextCanvas.Align'.Center
+        AutoHeight: =true
+        BorderStyle: =""
+        ContentLanguage: =""
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Dancing Script'
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontItalic: =false
+        FontStrikethrough: =false
+        FontUnderline: =false
+        Height: =35
+        Size: =35
+        TabIndex: =0
+        Text: =varGLBSelectedQuiz.name
+        Tooltip: =""
+        VerticalAlign: =VerticalAlign.Middle
+        Visible: =true
+        Weight: ="Regular"
+        Width: =Parent.Width
+        Wrap: =true
+        X: =0
+        Y: =36
+        ZIndex: =10
+
