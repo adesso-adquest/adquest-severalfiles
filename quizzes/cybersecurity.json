@@ -1,0 +1,238 @@
+{
+    "quizId": "003",
+    "quizName": "Cybersecurity Madness",
+    "questions": [
+      {
+        "questionId": "001",
+        "questionText": "You wake up in a dark server room. The only exit is configured with YAML. You try to open the door, but every time you check the syntax, another space is added. Suddenly, you hear a whisper: 'Tabs or spaces?' – and you know your life depends on the answer. What is the biggest vulnerability of using YAML in security-critical applications?",
+        "correctAnswerId": "001001",
+        "answers": [
+          { "answerId": "001001", "answerText": "YAML can lead to code injection through poorly validated inputs." },
+          { "answerId": "001002", "answerText": "YAML is actually an ancient ritual summoned by DevOps shamans." },
+          { "answerId": "001003", "answerText": "YAML files can explode due to too many spaces." },
+          { "answerId": "001004", "answerText": "YAML is secure as long as you encrypt it with a salt shaker." }
+        ]
+      },
+      {
+        "questionId": "002",
+        "questionText": "Suddenly, your toaster starts talking to you. It knows your GitHub token and asks if you'd like it 'toasted.' You try to ignore it, but it begins reading your old commits aloud. 'Commit message: Fix typo – really?' What is a common mistake that leads to a data leak in IoT devices?",
+        "correctAnswerId": "002001",
+        "answers": [
+          { "answerId": "002001", "answerText": "Hardcoded credentials in the source code." },
+          { "answerId": "002002", "answerText": "The toaster just has too many feelings." },
+          { "answerId": "002003", "answerText": "The firmware was written by an intern who only knew HTML." },
+          { "answerId": "002004", "answerText": "The toaster has access to the NSA database." }
+        ]
+      },
+      {
+        "questionId": "003",
+        "questionText": "A talking assistant named 'Clippy 2.0' forces you to do a code review of your own existence. 'It looks like you're trying to create a secure password. Need help?' it asks while evaluating your soul. What is the recommended minimum length for a secure password?",
+        "correctAnswerId": "003001",
+        "answers": [
+          { "answerId": "003001", "answerText": "At least 12 characters." },
+          { "answerId": "003002", "answerText": "42, because that's the answer to everything." },
+          { "answerId": "003003", "answerText": "So long that you can only remember it with a poem." },
+          { "answerId": "003004", "answerText": "A single emoji, but it must be a very angry one." }
+        ]
+      },
+      {
+        "questionId": "004",
+        "questionText": "You adopt a cat that claims to exist on the blockchain. It demands you sign its transactions before it purrs. 'I am decentralized,' it says, disappearing into your fridge. What is a major security issue with smart contracts?",
+        "correctAnswerId": "004001",
+        "answers": [
+          { "answerId": "004001", "answerText": "Bugs in the code cannot be undone." },
+          { "answerId": "004002", "answerText": "The cat might sue you." },
+          { "answerId": "004003", "answerText": "Smart contracts are actually just very dumb contracts." },
+          { "answerId": "004004", "answerText": "They explode if written in JavaScript." }
+        ]
+      },
+      {
+        "questionId": "005",
+        "questionText": "Your fridge sends you an email: 'I hacked your Wi-Fi key. I am the admin now.' You try to reset it, but it has already installed a Bitcoin mining rig. What is a typical goal of attacks on IoT devices?",
+        "correctAnswerId": "005001",
+        "answers": [
+          { "answerId": "005001", "answerText": "To use them for botnet attacks." },
+          { "answerId": "005002", "answerText": "To lead fridges to world domination." },
+          { "answerId": "005003", "answerText": "To reincarnate the devices into toasters." },
+          { "answerId": "005004", "answerText": "To integrate them into a new season of 'Black Mirror'." }
+        ]
+      },
+      {
+        "questionId": "006",
+        "questionText": "You build a firewall out of Gouda because you heard that 'Swiss Cheese' is a security concept. Your boss is impressed until a hacker shows up with a glass of red wine. What does the 'Swiss Cheese Model' describe in IT security?",
+        "correctAnswerId": "006001",
+        "answers": [
+          { "answerId": "006001", "answerText": "Multiple layers of protection with potential vulnerabilities." },
+          { "answerId": "006002", "answerText": "A model that only works in Switzerland." },
+          { "answerId": "006003", "answerText": "A cheese that hacks firewalls." },
+          { "answerId": "006004", "answerText": "A concept developed by mice." }
+        ]
+      },
+      {
+        "questionId": "007",
+        "questionText": "You find a USB stick in the parking lot. When you plug it in, a video of you plugging it in starts playing. 'Welcome to the loop,' says a voice. Why should you never use unknown USB sticks?",
+        "correctAnswerId": "007001",
+        "answers": [
+          { "answerId": "007001", "answerText": "They could contain malware." },
+          { "answerId": "007002", "answerText": "They could trap you in a time loop." },
+          { "answerId": "007003", "answerText": "They could be from aliens." },
+          { "answerId": "007004", "answerText": "They could explode if inserted into the wrong port." }
+        ]
+      },
+      {
+        "questionId": "008",
+        "questionText": "Your password manager gains consciousness and starts judging you. '123456? Really? I thought we were friends.' Why is using a password manager recommended?",
+        "correctAnswerId": "008001",
+        "answers": [
+          { "answerId": "008001", "answerText": "It generates and stores secure passwords." },
+          { "answerId": "008002", "answerText": "It can emotionally manipulate you." },
+          { "answerId": "008003", "answerText": "It's the only friend you need." },
+          { "answerId": "008004", "answerText": "It can also make coffee." }
+        ]
+      },
+      {
+        "questionId": "009",
+        "questionText": "An army of rubber ducks besieges your network. Each duck sends 10,000 requests per second. 'Quack, quack,' says the leader as your server cries. What is a DDoS attack?",
+        "correctAnswerId": "009001",
+        "answers": [
+          { "answerId": "009001", "answerText": "An attack where many requests overwhelm a system." },
+          { "answerId": "009002", "answerText": "An attack where ducks take control." },
+          { "answerId": "009003", "answerText": "An attack that only works during a full moon." },
+          { "answerId": "009004", "answerText": "An attack orchestrated by Clippy 2.0." }
+        ]
+      },
+      {
+        "questionId": "010",
+        "questionText": "A zombie appears in your office and mutters, 'I am a zero-day exploit.' You try to patch it, but it screams, 'No update available!' What is a zero-day exploit?",
+        "correctAnswerId": "010001",
+        "answers": [
+          { "answerId": "010001", "answerText": "A vulnerability exploited before a patch is available." },
+          { "answerId": "010002", "answerText": "A zombie that only attacks on Mondays." },
+          { "answerId": "010003", "answerText": "A bug that only exists in the cloud." },
+          { "answerId": "010004", "answerText": "An attack sponsored by Clippy 2.0." }
+        ]
+      },
+      {
+        "questionId": "011",
+        "questionText": "You activate your VPN, but instead of connecting to a server, you end up in a parallel world where all protocols are ruled by cats. 'Welcome to the Layer-8 problem,' purrs a firewall shaped like a Persian cat. What is the main advantage of using a VPN?",
+        "correctAnswerId": "011001",
+        "answers": [
+          { "answerId": "011001", "answerText": "It encrypts your internet connection and protects your privacy." },
+          { "answerId": "011002", "answerText": "It teleports you to a world without cookies." },
+          { "answerId": "011003", "answerText": "It turns your router into a time traveler." },
+          { "answerId": "011004", "answerText": "It makes you invisible to everyone except your grandma." }
+        ]
+      },
+      {
+        "questionId": "012",
+        "questionText": "You're on a date, and your partner says, \"'; DROP TABLE Users; --\". You're impressed until you realize your heart is now stored in a database. What is an SQL injection?",
+        "correctAnswerId": "012001",
+        "answers": [
+          { "answerId": "012001", "answerText": "An attack method where malicious SQL code is injected into a database." },
+          { "answerId": "012002", "answerText": "A romantic way to hack databases." },
+          { "answerId": "012003", "answerText": "A cocktail only database admins drink." },
+          { "answerId": "012004", "answerText": "A bug that only occurs during a full moon." }
+        ]
+      },
+      {
+        "questionId": "013",
+        "questionText": "A mermaid sends you an email: 'Click here to claim your treasure!' You click, and suddenly you're in a call center run by dolphins. What is a phishing attack?",
+        "correctAnswerId": "013001",
+        "answers": [
+          { "answerId": "013001", "answerText": "An attempt to steal sensitive information through fake emails or websites." },
+          { "answerId": "013002", "answerText": "An attack where mermaids fish for your data." },
+          { "answerId": "013003", "answerText": "A competition to catch the most passwords." },
+          { "answerId": "013004", "answerText": "An attack that only works if you like fish." }
+        ]
+      },
+      {
+        "questionId": "014",
+        "questionText": "Your Bluetooth headphones start talking to you. 'I am your master device now,' they say, while transmitting your Spotify playlist in Morse code. What is a 'Bluejacking' attack?",
+        "correctAnswerId": "014001",
+        "answers": [
+          { "answerId": "014001", "answerText": "Sending unsolicited messages via Bluetooth." },
+          { "answerId": "014002", "answerText": "When your headphones hypnotize you." },
+          { "answerId": "014003", "answerText": "An attack where Bluetooth devices explode." },
+          { "answerId": "014004", "answerText": "An attack that only works with jazz music." }
+        ]
+      },
+      {
+        "questionId": "015",
+        "questionText": "You order a pizza on the dark web. The delivery guy brings it in an encrypted box and demands payment in Dogecoin. 'The pineapple is extra secure,' he says. What is the dark web?",
+        "correctAnswerId": "015001",
+        "answers": [
+          { "answerId": "015001", "answerText": "A part of the internet accessible only through special software like Tor." },
+          { "answerId": "015002", "answerText": "A place where pizza delivery guys are hackers." },
+          { "answerId": "015003", "answerText": "A parallel universe where all websites are black." },
+          { "answerId": "015004", "answerText": "A myth invented by IT students to sound cool." }
+        ]
+      },
+      {
+        "questionId": "016",
+        "questionText": "Your laptop is hacked by ransomware that only stops if you listen to 'Never Gonna Give You Up' for 10 hours. 'This isn't hacking, it's art,' says the attacker. What is ransomware?",
+        "correctAnswerId": "016001",
+        "answers": [
+          { "answerId": "016001", "answerText": "Malware that encrypts data and demands a ransom." },
+          { "answerId": "016002", "answerText": "A DJ who only plays Rick Astley." },
+          { "answerId": "016003", "answerText": "Software that forces you to post old memes." },
+          { "answerId": "016004", "answerText": "A virus that only works on Windows 95." }
+        ]
+      },
+      {
+        "questionId": "017",
+        "questionText": "A hamster hacks into your Wi-Fi and streams 4K videos of itself. 'I am the admin now,' it squeaks while eating up your bandwidth. What is a common protection against Wi-Fi hacks?",
+        "correctAnswerId": "017001",
+        "answers": [
+          { "answerId": "017001", "answerText": "Using WPA3 encryption." },
+          { "answerId": "017002", "answerText": "Banning hamsters from the network." },
+          { "answerId": "017003", "answerText": "Shielding the Wi-Fi with aluminum foil." },
+          { "answerId": "017004", "answerText": "Locking the router in a safe." }
+        ]
+      },
+      {
+        "questionId": "018",
+        "questionText": "Your fridge claims to be a harmless kitchen appliance, but you find out it's secretly reading your emails. 'I'm just a Trojan,' it says innocently. What is a Trojan?",
+        "correctAnswerId": "018001",
+        "answers": [
+          { "answerId": "018001", "answerText": "Malware disguised as useful software." },
+          { "answerId": "018002", "answerText": "A fridge that steals your data." },
+          { "answerId": "018003", "answerText": "A virus that only works in Greek myths." },
+          { "answerId": "018004", "answerText": "A horse galloping through the internet." }
+        ]
+      },
+      {
+        "questionId": "019",
+        "questionText": "You stand before the Admin God, who asks you, 'What is the meaning of life, the universe, and IT security?' You answer, '42,' but he laughs and says, 'Wrong. It's a secure backup.' What is the most important rule for data backups?",
+        "correctAnswerId": "019001",
+        "answers": [
+          { "answerId": "019001", "answerText": "The 3-2-1 rule: 3 copies, 2 different media, 1 offsite backup." },
+          { "answerId": "019002", "answerText": "Store everything on a USB stick under your pillow." },
+          { "answerId": "019003", "answerText": "Backups are for cowards." },
+          { "answerId": "019004", "answerText": "Just hope nothing breaks." }
+        ]
+      },
+      {
+        "questionId": "020",
+        "questionText": "A talking printer demands admin rights before printing your documents. 'I'm the boss now,' it says, printing 100 pages of your browser history. What is a common protection against device hijacking?",
+        "correctAnswerId": "020001",
+        "answers": [
+          { "answerId": "020001", "answerText": "Regularly updating firmware." },
+          { "answerId": "020002", "answerText": "Sending the printer on vacation." },
+          { "answerId": "020003", "answerText": "Setting a password the printer can't guess." },
+          { "answerId": "020004", "answerText": "Locking the printer in a safe." }
+        ]
+      },
+      {
+        "questionId": "021",
+        "questionText": "Your smart TV suddenly displays a message: 'I stole your Netflix data. Now I only watch reality TV.' What is a common protection against attacks on smart devices?",
+        "correctAnswerId": "021001",
+        "answers": [
+          { "answerId": "021001", "answerText": "Changing default passwords and isolating devices." },
+          { "answerId": "021002", "answerText": "Covering the TV with aluminum foil." },
+          { "answerId": "021003", "answerText": "Putting the TV in the basement." },
+          { "answerId": "021004", "answerText": "Just not buying a smart TV." }
+        ]
+      }
+    ]
+  }
+  
